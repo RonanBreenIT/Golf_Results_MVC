@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Golf_Results_MVC.DAL;
 using Golf_Results_MVC.Models;
+using PagedList;
 
 namespace Golf_Results_MVC.Controllers
 {
@@ -15,9 +16,22 @@ namespace Golf_Results_MVC.Controllers
     {
         private GolfContext db = new GolfContext();
 
-        public ViewResult Index(string sortOrder, string searchString)
+        public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
+            ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
             var golfers = from g in db.Golfers
                            select g;
             if (!String.IsNullOrEmpty(searchString))
@@ -34,8 +48,11 @@ namespace Golf_Results_MVC.Controllers
                     golfers = golfers.OrderBy(s => s.Surname);
                     break;
             }
-            return View(golfers.ToList());
+            int pageSize = 2; // Change this to increase numbers shown on the page
+            int pageNumber = (page ?? 1);
+            return View(golfers.ToPagedList(pageNumber, pageSize));
         }
+
         // GET: Golfer/Details/5
         public ActionResult Details(int? id)
         {
