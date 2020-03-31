@@ -15,12 +15,22 @@ namespace Golf_Results_MVC.Controllers
     {
         private GolfContext db = new GolfContext();
 
-        // GET: Golfer
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder)
         {
-            return View(db.Golfers.ToList());
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            var golfers = from g in db.Golfers
+                           select g;
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    golfers = golfers.OrderByDescending(s => s.Surname);
+                    break;
+                default:
+                    golfers = golfers.OrderBy(s => s.Surname);
+                    break;
+            }
+            return View(golfers.ToList());
         }
-
         // GET: Golfer/Details/5
         public ActionResult Details(int? id)
         {
