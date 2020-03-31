@@ -25,6 +25,33 @@
         <dd>
             @Html.DisplayFor(model => model.Surname)
         </dd>
+        <dd>
+            <table class="table">
+                <tr>
+                    <th>Competition</th>
+                    <th>Season</th>
+                    <th>Player Score</th>
+                    <th>Position</th>
+                </tr>
+                @foreach (var item in Model.Comp_Result)
+                {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Competition.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate.Year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GolferScore)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Position)
+                </td>
+            </tr>
+                }
+            </table>
+        </dd>
 
     </dl>
 </div>
