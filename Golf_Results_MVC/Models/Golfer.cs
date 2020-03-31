@@ -10,8 +10,12 @@ namespace Golf_Results_MVC.Models
     {
         public int ID { get; set; }
 
+        [Required]
+        [Display(Name = "First Name"), StringLength(50, MinimumLength = 1)]
         public string Firstname { get; set; }
 
+        [Required]
+        [Display(Name = "Surname"), StringLength(50, MinimumLength = 1)]
         public string Surname { get; set; }
 
         [Display(Name = "Golfer Name")]

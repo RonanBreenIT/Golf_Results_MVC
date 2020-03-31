@@ -47,15 +47,22 @@ namespace Golf_Results_MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Firstname,Surname")] Golfer golfer)
+        public ActionResult Create([Bind(Include = "Surname, Firstname")]Golfer golfer)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Golfers.Add(golfer);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.Golfers.Add(golfer);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
-
+            catch (DataException /* dex */)
+            {
+                //Log the error (uncomment dex variable name and add a line here to write a log.
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+            }
             return View(golfer);
         }
 
@@ -77,25 +84,43 @@ namespace Golf_Results_MVC.Controllers
         // POST: Golfer/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Firstname,Surname")] Golfer golfer)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(golfer).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(golfer);
-        }
-
-        // GET: Golfer/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult EditPost(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var golferToUpdate = db.Golfers.Find(id);
+            if (TryUpdateModel(golferToUpdate, "",
+               new string[] { "Surname", "Firstname"}))
+            {
+                try
+                {
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
+                catch (DataException /* dex */)
+                {
+                    //Log the error (uncomment dex variable name and add a line here to write a log.
+                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
+                }
+            }
+            return View(golferToUpdate);
+        }
+
+        // GET: Golfer/Delete/5
+        public ActionResult Delete(int? id, bool? saveChangesError = false)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            if (saveChangesError.GetValueOrDefault())
+            {
+                ViewBag.ErrorMessage = "Delete failed. Try again, and if the problem persists see your system administrator.";
             }
             Golfer golfer = db.Golfers.Find(id);
             if (golfer == null)
@@ -106,13 +131,21 @@ namespace Golf_Results_MVC.Controllers
         }
 
         // POST: Golfer/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult Delete(int id)
         {
-            Golfer golfer = db.Golfers.Find(id);
-            db.Golfers.Remove(golfer);
-            db.SaveChanges();
+            try
+            {
+                Golfer golfer = db.Golfers.Find(id);
+                db.Golfers.Remove(golfer);
+                db.SaveChanges();
+            }
+            catch (DataException/* dex */)
+            {
+                //Log the error (uncomment dex variable name and add a line here to write a log.
+                return RedirectToAction("Delete", new { id = id, saveChangesError = true });
+            }
             return RedirectToAction("Index");
         }
 

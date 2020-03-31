@@ -11,8 +11,10 @@ namespace Golf_Results_MVC.Models
         [Key]
         public int CompResultID { get; set; } // More than one results for each comp i.e. Comp 1 results for each year 2020, 2019 etc..
 
+        [Required]
         public int CompetitionID { get; set; }
 
+        [Required]
         public int GolferID { get; set; }
 
         public int? Position { get; set; } //? allows it to be null. If null will make missed cut
@@ -26,6 +28,8 @@ namespace Golf_Results_MVC.Models
         public DateTime EndDate { get; set; }
 
         public int? GolferScore { get; set; } 
+
+        public bool Major { get; set; }
 
         public virtual Competition Competition { get; set; }
 
