@@ -15,11 +15,16 @@ namespace Golf_Results_MVC.Controllers
     {
         private GolfContext db = new GolfContext();
 
-        public ActionResult Index(string sortOrder)
+        public ViewResult Index(string sortOrder, string searchString)
         {
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             var golfers = from g in db.Golfers
                            select g;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                golfers = golfers.Where(s => s.Surname.Contains(searchString)
+                                       || s.Firstname.Contains(searchString));
+            }
             switch (sortOrder)
             {
                 case "name_desc":
