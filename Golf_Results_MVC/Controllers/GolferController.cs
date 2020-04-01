@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
-using Golf_Results_MVC.DAL;
+﻿using Golf_Results_MVC.DAL;
 using Golf_Results_MVC.Models;
 using PagedList;
+using System;
+using System.Data;
+using System.Linq;
+using System.Net;
+using System.Web.Mvc;
 
 namespace Golf_Results_MVC.Controllers
 {
@@ -33,7 +30,7 @@ namespace Golf_Results_MVC.Controllers
             ViewBag.CurrentFilter = searchString;
 
             var golfers = from g in db.Golfers
-                           select g;
+                          select g;
             if (!String.IsNullOrEmpty(searchString))
             {
                 golfers = golfers.Where(s => s.Surname.Contains(searchString)
@@ -126,7 +123,7 @@ namespace Golf_Results_MVC.Controllers
             }
             var golferToUpdate = db.Golfers.Find(id);
             if (TryUpdateModel(golferToUpdate, "",
-               new string[] { "Surname", "Firstname"}))
+               new string[] { "Surname", "Firstname" }))
             {
                 try
                 {
