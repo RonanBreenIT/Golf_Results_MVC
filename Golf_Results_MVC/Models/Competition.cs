@@ -23,7 +23,7 @@ namespace Golf_Results_MVC.Models
         public DateTime EndDate { get; set; }
 
         [Display(Name = "Dates")]
-        //[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd-MMM}", ApplyFormatInEditMode = true)]
         public string FullDate
         {
             get
