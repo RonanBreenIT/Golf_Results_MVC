@@ -8,11 +8,11 @@ namespace Golf_Results_MVC.Models
         public int ID { get; set; }
 
         [Required]
-        [Display(Name = "First Name"), StringLength(50, MinimumLength = 1)]
+        [Display(Name = "First Name"), StringLength(50, MinimumLength = 1, ErrorMessage = "Firstname cannot be longer than 50 characters or null.")]
         public string Firstname { get; set; }
 
         [Required]
-        [Display(Name = "Surname"), StringLength(50, MinimumLength = 1)]
+        [Display(Name = "Surname"), StringLength(50, MinimumLength = 1, ErrorMessage = "Surname cannot be longer than 50 characters or null.")]
         public string Surname { get; set; }
 
         [Display(Name = "Golfer Name")]
