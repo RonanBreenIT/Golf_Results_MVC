@@ -40,7 +40,7 @@
                     <th>Player</th>
                     <th>Player Score</th>
                 </tr>
-                @foreach (var item in Model.Comp_Result)
+                @foreach (var item in Model.Comp_Result.OrderBy(i =>i.Position)) // Order by Position 
                 {
                     <tr>
                         <td>
