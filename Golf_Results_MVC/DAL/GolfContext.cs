@@ -4,9 +4,9 @@ using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace Golf_Results_MVC.DAL
 {
-    public class GolfContext: DbContext
+    public class GolfContext : DbContext
     {
-        public GolfContext(): base("GolfContext") // This passes name of the connection string to the constructor
+        public GolfContext() : base("GolfContext") // This passes name of the connection string to the constructor
         {
         }
 

@@ -1,0 +1,73 @@
+﻿@model Golf_Results_MVC.Models.Competition
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Results</h2>
+
+<div>
+    <h4>Competition</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartDate)
+        </dd>*@
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndDate)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FullDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FullDate)
+        </dd>
+        <dd>
+            <table class="table">
+                <tr>
+                    <th>Position</th>
+                    <th>Player</th>
+                    <th>Player Score</th>
+                </tr>
+                @foreach (var item in Model.Comp_Result.OrderBy(i => i.Position)) // Order by Position
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Position)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Golfer.FullName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.GolferScore)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

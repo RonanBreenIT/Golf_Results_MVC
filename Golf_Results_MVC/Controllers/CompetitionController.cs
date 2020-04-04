@@ -1,24 +1,28 @@
-﻿using Golf_Results_MVC.DAL;
-using Golf_Results_MVC.Models;
-using PagedList;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
+using System.Web;
 using System.Web.Mvc;
-using System.Collections.Generic;
-using System.Data.Entity;
+using Golf_Results_MVC.DAL;
+using Golf_Results_MVC.Models;
+using PagedList;
 
 namespace Golf_Results_MVC.Controllers
 {
-    public class GolferController : Controller
+    public class CompetitionController : Controller
     {
         private GolfContext db = new GolfContext();
 
-        public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
+        // GET: Competition
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
 
             if (searchString != null)
             {
@@ -31,88 +35,94 @@ namespace Golf_Results_MVC.Controllers
 
             ViewBag.CurrentFilter = searchString;
 
-            var golfers = from g in db.Golfers
-                          select g;
+            var comps = from c in db.Competitions
+                          select c;
+
             if (!String.IsNullOrEmpty(searchString))
             {
-                golfers = golfers.Where(s => s.Surname.Contains(searchString)
-                                       || s.Firstname.Contains(searchString));
+                comps = comps.Where(s => s.Name.Contains(searchString));                      
             }
             switch (sortOrder)
             {
                 case "name_desc":
-                    golfers = golfers.OrderByDescending(s => s.Surname);
+                    comps = comps.OrderByDescending(s => s.Name);
                     break;
-                default:
-                    golfers = golfers.OrderBy(s => s.Surname);
+                case "Date":
+                    comps = comps.OrderBy(s => s.StartDate);
+                    break;
+                case "date_desc":
+                    comps= comps.OrderByDescending(s => s.StartDate);
+                    break;
+                default:  // Name ascending 
+                    comps = comps.OrderBy(s => s.StartDate);
                     break;
             }
-            int pageSize = 2; // Change this to increase numbers shown on the page
+            int pageSize = 3;
             int pageNumber = (page ?? 1);
-            return View(golfers.ToPagedList(pageNumber, pageSize));
+            return View(comps.ToPagedList(pageNumber, pageSize));
         }
 
-        // GET: Golfer/Details/5
+        // GET: Competition/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Golfer golfer = db.Golfers.Find(id);
-            if (golfer == null)
+            Competition competition = db.Competitions.Find(id);
+            if (competition == null)
             {
                 return HttpNotFound();
             }
-            return View(golfer);
+            return View(competition);
         }
 
-        // GET: Golfer/Create
+        // GET: Competition/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Golfer/Create
+        // POST: Competition/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Surname, Firstname")]Golfer golfer)
+        public ActionResult Create([Bind(Include = "Name, StartDate, EndDate")]Competition comp)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    db.Golfers.Add(golfer);
+                    db.Competitions.Add(comp);
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
             }
-            catch (DataException /* dex */)
+            catch (RetryLimitExceededException /* dex */)
             {
                 //Log the error (uncomment dex variable name and add a line here to write a log.
                 ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
             }
-            return View(golfer);
+            return View(comp);
         }
 
-        // GET: Golfer/Edit/5
+        // GET: Competition/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Golfer golfer = db.Golfers.Find(id);
-            if (golfer == null)
+            Competition competition = db.Competitions.Find(id);
+            if (competition == null)
             {
                 return HttpNotFound();
             }
-            return View(golfer);
+            return View(competition);
         }
 
-        // POST: Golfer/Edit/5
+        // POST: Competition/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost, ActionName("Edit")]
@@ -123,14 +133,13 @@ namespace Golf_Results_MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var golferToUpdate = db.Golfers.Find(id);
-            if (TryUpdateModel(golferToUpdate, "",
-               new string[] { "Surname", "Firstname" }))
+            var compToUpdate = db.Competitions.Find(id);
+            if (TryUpdateModel(compToUpdate, "",
+               new string[] { "Name", "StartDate", "EndDate" }))
             {
                 try
                 {
                     db.SaveChanges();
-
                     return RedirectToAction("Index");
                 }
                 catch (DataException /* dex */)
@@ -139,43 +148,39 @@ namespace Golf_Results_MVC.Controllers
                     ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
                 }
             }
-            return View(golferToUpdate);
+            return View(compToUpdate);
         }
 
-        // GET: Golfer/Delete/5
-        public ActionResult Delete(int? id, bool? saveChangesError = false)
+        // GET: Competition/Delete/5
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            if (saveChangesError.GetValueOrDefault())
-            {
-                ViewBag.ErrorMessage = "Delete failed. Try again, and if the problem persists see your system administrator.";
-            }
-            Golfer golfer = db.Golfers.Find(id);
-            if (golfer == null)
+            Competition competition = db.Competitions.Find(id);
+            if (competition == null)
             {
                 return HttpNotFound();
             }
-            return View(golfer);
+            return View(competition);
         }
 
-        // POST: Golfer/Delete/5
+        // POST: Competition/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id)
         {
             try
             {
-                Golfer golfer = db.Golfers.Find(id);
-                db.Golfers.Remove(golfer);
+                Competition comp = db.Competitions.Find(id);
+                db.Competitions.Remove(comp);
                 db.SaveChanges();
             }
-            catch (DataException/* dex */)
+            catch (RetryLimitExceededException /* dex */)
             {
                 //Log the error (uncomment dex variable name and add a line here to write a log.
-                return RedirectToAction("Delete", new { id = id, saveChangesError = true });
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
             }
             return RedirectToAction("Index");
         }
