@@ -14,12 +14,14 @@ namespace Golf_Results_MVC.Models
         [Required]
         public int GolferID { get; set; }
 
-        public int? Position { get; set; } //? allows it to be null. If null will make missed cut
+        [DisplayFormat(NullDisplayText = "MC")]
+        public string Position { get; set; } //? allows it to be null. If null will make missed cut.
 
         public int Season { get; set; }
 
-        public int? GolferScore { get; set; }
-
+        [Display(Name = "Golfer Score")]
+        [DisplayFormat(NullDisplayText = "DNF")]
+        public string GolferScore { get; set; }
 
         public virtual Competition Competition { get; set; }
 
