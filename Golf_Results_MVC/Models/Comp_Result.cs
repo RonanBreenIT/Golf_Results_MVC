@@ -17,12 +17,11 @@ namespace Golf_Results_MVC.Models
         public int? Position { get; set; } //? allows it to be null. If null will make missed cut
 
         [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0:yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime Year { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime Season { get; set; }
 
         public int? GolferScore { get; set; }
 
-        public bool Major { get; set; }
 
         public virtual Competition Competition { get; set; }
 

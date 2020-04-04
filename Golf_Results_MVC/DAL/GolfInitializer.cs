@@ -19,9 +19,9 @@ When you deploy an application to a production web server, you must remove or di
             new Golfer{Firstname="Phil", Surname="Mickelson"},
             new Golfer{Firstname="Brooks", Surname="Koepka"}
             };
-
             golfers.ForEach(g => context.Golfers.Add(g));
             context.SaveChanges();
+
             var comps = new List<Competition>
             {
             new Competition{Name="Sentry Open", StartDate= DateTime.Parse("2020-01-02"), EndDate=DateTime.Parse("2020-01-05")},
@@ -33,23 +33,24 @@ When you deploy an application to a production web server, you must remove or di
             };
             comps.ForEach(c => context.Competitions.Add(c));
             context.SaveChanges();
+
             var results = new List<Comp_Result>
             {
-            new Comp_Result{CompetitionID=1, GolferID=1, Position=1, GolferScore=-15, Year= DateTime.Parse("2020")},
-            new Comp_Result{CompetitionID=1, GolferID=2, Position=2, GolferScore=-14, Year= DateTime.Parse("2020")},
-            new Comp_Result{CompetitionID=1, GolferID=3, Position=5, GolferScore=-+5, Year= DateTime.Parse("2020")},
-            new Comp_Result{CompetitionID=1, GolferID=4, Position=3, GolferScore=-10, Year= DateTime.Parse("2020")},
-            new Comp_Result{CompetitionID=1, GolferID=5, Position=4, GolferScore=-8, Year= DateTime.Parse("2020")},
-            //new Comp_Result{CompetitionID=2, GolferID=1, Position=5, GolferScore=+6, StartDate= DateTime.Parse("2020-01-09"), EndDate=DateTime.Parse("2020-01-12")},
-            new Comp_Result{CompetitionID=2, GolferID=2, Position=2, GolferScore=-9, Year= DateTime.Parse("2020")},
-            new Comp_Result{CompetitionID=2, GolferID=3, Position=5, GolferScore=-+2, Year= DateTime.Parse("2020")},
-            new Comp_Result{CompetitionID=2, GolferID=4, Position=3, GolferScore=-4, Year= DateTime.Parse("2020")},
-            new Comp_Result{CompetitionID=2, GolferID=5, Position=1, GolferScore=-11, Year= DateTime.Parse("2020")},
-            new Comp_Result{CompetitionID=3, GolferID=1, Position=5, GolferScore=+6, Year= DateTime.Parse("2020")},
-            new Comp_Result{CompetitionID=3, GolferID=2, Position=2, GolferScore=-4, Year= DateTime.Parse("2020")},
-            new Comp_Result{CompetitionID=3, GolferID=3, Position=4, GolferScore=-+1, Year= DateTime.Parse("2020")},
-            new Comp_Result{CompetitionID=3, GolferID=4, Position=3, GolferScore=0, Year= DateTime.Parse("2020")},
-            new Comp_Result{CompetitionID=3, GolferID=5, Position=1, GolferScore=-6, Year= DateTime.Parse("2020")}
+                new Comp_Result{CompetitionID=1, GolferID=1, Position=1, GolferScore=-15, Season= DateTime.Parse("2020-01-01")},
+                new Comp_Result{CompetitionID=1, GolferID=2, Position=2, GolferScore=-14, Season= DateTime.Parse("2020-01-01")},
+                new Comp_Result{CompetitionID=1, GolferID=3, Position=5, GolferScore=-+5, Season= DateTime.Parse("2020-01-01")},
+                new Comp_Result{CompetitionID=1, GolferID=4, Position=3, GolferScore=-10, Season= DateTime.Parse("2020-01-01")},
+                new Comp_Result{CompetitionID=1, GolferID=5, Position=4, GolferScore=-8, Season= DateTime.Parse("2020-01-01")},
+                new Comp_Result{CompetitionID=2, GolferID=1, Position=5, GolferScore=+6, Season= DateTime.Parse("2020-01-01")},
+                new Comp_Result{CompetitionID=2, GolferID=2, Position=2, GolferScore=-9, Season= DateTime.Parse("2020-01-01")},
+                new Comp_Result{CompetitionID=2, GolferID=3, Position=5, GolferScore=-+2, Season= DateTime.Parse("2020-01-01")},
+                new Comp_Result{CompetitionID=2, GolferID=4, Position=3, GolferScore=-4, Season= DateTime.Parse("2020-01-01")},
+                new Comp_Result{CompetitionID=2, GolferID=5, Position=1, GolferScore=-11, Season= DateTime.Parse("2020-01-01")},
+                new Comp_Result{CompetitionID=3, GolferID=1, Position=5, GolferScore=+6, Season= DateTime.Parse("2020-01-01")},
+                new Comp_Result{CompetitionID=3, GolferID=2, Position=2, GolferScore=-4, Season= DateTime.Parse("2020-01-01")},
+                new Comp_Result{CompetitionID=3, GolferID=3, Position=4, GolferScore=-+1, Season= DateTime.Parse("2020-01-01")},
+                new Comp_Result{CompetitionID=3, GolferID=4, Position=3, GolferScore=0, Season= DateTime.Parse("2020-01-01")},
+                new Comp_Result{CompetitionID=3, GolferID=5, Position=1, GolferScore=-6, Season= DateTime.Parse("2020-01-01")}
             };
             results.ForEach(r => context.Comp_Results.Add(r));
             context.SaveChanges();

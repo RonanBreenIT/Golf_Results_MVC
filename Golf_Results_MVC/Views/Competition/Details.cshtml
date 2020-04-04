@@ -33,6 +33,29 @@
         <dd>
             @Html.DisplayFor(model => model.EndDate)
         </dd>
+        <dd>
+            <table class="table">
+                <tr>
+                    <th>Position</th>
+                    <th>Player</th>
+                    <th>Player Score</th>
+                </tr>
+                @foreach (var item in Model.Comp_Result)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Position)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Golfer.FullName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.GolferScore)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </dd>
 
     </dl>
 </div>

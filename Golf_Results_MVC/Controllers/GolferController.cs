@@ -6,6 +6,8 @@ using System.Data;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using System.Collections.Generic;
+using System.Data.Entity;
 
 namespace Golf_Results_MVC.Controllers
 {

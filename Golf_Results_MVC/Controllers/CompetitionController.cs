@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Golf_Results_MVC.DAL;
 using Golf_Results_MVC.Models;
+using PagedList;
 
 namespace Golf_Results_MVC.Controllers
 {
@@ -16,9 +18,48 @@ namespace Golf_Results_MVC.Controllers
         private GolfContext db = new GolfContext();
 
         // GET: Competition
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            return View(db.Competitions.ToList());
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var comps = from c in db.Competitions
+                          select c;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                comps = comps.Where(s => s.Name.Contains(searchString));                      
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    comps = comps.OrderByDescending(s => s.Name);
+                    break;
+                case "Date":
+                    comps = comps.OrderBy(s => s.StartDate);
+                    break;
+                case "date_desc":
+                    comps= comps.OrderByDescending(s => s.StartDate);
+                    break;
+                default:  // Name ascending 
+                    comps = comps.OrderBy(s => s.StartDate);
+                    break;
+            }
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(comps.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Competition/Details/5
@@ -47,16 +88,23 @@ namespace Golf_Results_MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name,StartDate,EndDate")] Competition competition)
+        public ActionResult Create([Bind(Include = "Name, StartDate, EndDate")]Competition comp)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Competitions.Add(competition);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.Competitions.Add(comp);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
-
-            return View(competition);
+            catch (RetryLimitExceededException /* dex */)
+            {
+                //Log the error (uncomment dex variable name and add a line here to write a log.
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+            }
+            return View(comp);
         }
 
         // GET: Competition/Edit/5
@@ -77,17 +125,30 @@ namespace Golf_Results_MVC.Controllers
         // POST: Competition/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name,StartDate,EndDate")] Competition competition)
+        public ActionResult EditPost(int? id)
         {
-            if (ModelState.IsValid)
+            if (id == null)
             {
-                db.Entry(competition).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            return View(competition);
+            var compToUpdate = db.Competitions.Find(id);
+            if (TryUpdateModel(compToUpdate, "",
+               new string[] { "Name", "StartDate", "EndDate" }))
+            {
+                try
+                {
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch (DataException /* dex */)
+                {
+                    //Log the error (uncomment dex variable name and add a line here to write a log.
+                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
+                }
+            }
+            return View(compToUpdate);
         }
 
         // GET: Competition/Delete/5
@@ -106,13 +167,21 @@ namespace Golf_Results_MVC.Controllers
         }
 
         // POST: Competition/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult Delete(int id)
         {
-            Competition competition = db.Competitions.Find(id);
-            db.Competitions.Remove(competition);
-            db.SaveChanges();
+            try
+            {
+                Competition comp = db.Competitions.Find(id);
+                db.Competitions.Remove(comp);
+                db.SaveChanges();
+            }
+            catch (RetryLimitExceededException /* dex */)
+            {
+                //Log the error (uncomment dex variable name and add a line here to write a log.
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+            }
             return RedirectToAction("Index");
         }
 
