@@ -193,6 +193,7 @@
     <Content Include="Views\Competition\Details.cshtml" />
     <Content Include="Views\Competition\Edit.cshtml" />
     <Content Include="Views\Competition\Index.cshtml" />
+    <Content Include="Views\Competition\AllYears.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
