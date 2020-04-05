@@ -1,0 +1,68 @@
+﻿@model Golf_Results_MVC.Models.Competition
+
+@{
+    ViewBag.Title = "All Years";
+}
+
+<h2>Results</h2>
+
+<div>
+    <h4>Competition</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndDate)
+        </dd>
+
+        @*<dt>
+                @Html.DisplayNameFor(model => model.FullDate)
+            </dt>*@
+
+        @*<dd>
+                @Html.DisplayFor(model => model.FullDate)
+            </dd>*@
+        <dd>
+            <table class="table">
+                <tr>
+                    <th>Season</th>
+
+                </tr>
+                @foreach (var item in Model.Comp_Result.GroupBy(x => x.Season).Select(y => y.First()).Distinct()) // Order by Year then Position
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Season)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Results", "Details", new { id = item.CompetitionID, season = item.Season }) 
+                        </td>
+                    </tr>
+                }
+            </table>
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

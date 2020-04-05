@@ -49,11 +49,11 @@ When you deploy an application to a production web server, you must remove or di
                 new Comp_Result{CompetitionID=3, GolferID=1, Position="5", GolferScore="+6", Season= 2020},
                 new Comp_Result{CompetitionID=3, GolferID=2, Position="2", GolferScore="-4", Season= 2020},
                 new Comp_Result{CompetitionID=3, GolferID=3, Position=null, GolferScore=null, Season= 2020},
-                new Comp_Result{CompetitionID=3, GolferID=4, Position="3", GolferScore="0", Season= 2020},
+                new Comp_Result{CompetitionID=3, GolferID=4, Position="3", GolferScore=null, Season= 2020},
                 new Comp_Result{CompetitionID=3, GolferID=5, Position="1", GolferScore="-6", Season= 2020},
                 new Comp_Result{CompetitionID=1, GolferID=1, Position="1", GolferScore="-7", Season= 2019},
                 new Comp_Result{CompetitionID=1, GolferID=2, Position="2", GolferScore="-6", Season= 2019},
-                new Comp_Result{CompetitionID=1, GolferID=3, Position="0", GolferScore="-5", Season= 2019},
+                new Comp_Result{CompetitionID=1, GolferID=3, Position=null, GolferScore="-5", Season= 2019},
                 new Comp_Result{CompetitionID=1, GolferID=4, Position="3", GolferScore="-4", Season= 2019},
                 new Comp_Result{CompetitionID=1, GolferID=5, Position="4", GolferScore="-3", Season= 2019},
             };

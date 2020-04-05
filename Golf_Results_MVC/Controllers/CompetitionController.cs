@@ -62,6 +62,22 @@ namespace Golf_Results_MVC.Controllers
             return View(comps.ToPagedList(pageNumber, pageSize));
         }
 
+        // GET: Competition/AllYears/5
+        public ActionResult AllYears(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Competition competition = db.Competitions.Find(id);
+            
+            if (competition == null)
+            {
+                return HttpNotFound();
+            }
+            return View(competition);
+        }
+
         // GET: Competition/Details/5
         public ActionResult Details(int? id)
         {
@@ -76,8 +92,7 @@ namespace Golf_Results_MVC.Controllers
             }
             return View(competition);
         }
-
-        // GET: Competition/Create
+            
         public ActionResult Create()
         {
             return View();
