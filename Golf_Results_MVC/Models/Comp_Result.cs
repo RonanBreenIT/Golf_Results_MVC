@@ -11,6 +11,26 @@ namespace Golf_Results_MVC.Models
         [Required]
         public int CompetitionID { get; set; }
 
+        [DataType(DataType.Date)]
+        //[DisplayFormat(DataFormatString = "{0:dd-MMM-YYYY}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Start Date")]
+        public DateTime StartDate { get; set; }
+
+        [DataType(DataType.Date)]
+        //[DisplayFormat(DataFormatString = "{0:dd-MMM-YYYY}", ApplyFormatInEditMode = true)]
+        [Display(Name = "End Date")]
+        public DateTime EndDate { get; set; }
+
+        [Display(Name = "Dates")]
+        [DisplayFormat(DataFormatString = "{0:dd-MMM}", ApplyFormatInEditMode = true)]
+        public string FullDate
+        {
+            get
+            {
+                return StartDate.ToShortDateString() + " - " + EndDate.ToShortDateString();
+            }
+        }
+
         [Required]
         public int GolferID { get; set; }
 

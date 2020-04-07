@@ -22,7 +22,7 @@ namespace Golf_Results_MVC.Controllers
         {
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+           // ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
 
             if (searchString != null)
             {
@@ -47,14 +47,17 @@ namespace Golf_Results_MVC.Controllers
                 case "name_desc":
                     comps = comps.OrderByDescending(s => s.Name);
                     break;
-                case "Date":
-                    comps = comps.OrderBy(s => s.StartDate);
-                    break;
-                case "date_desc":
-                    comps= comps.OrderByDescending(s => s.StartDate);
-                    break;
+                //case "Date":
+                //    comps = comps.OrderBy(s => s.StartDate);
+                //    break;
+                //case "date_desc":
+                //    comps= comps.OrderByDescending(s => s.StartDate);
+                //    break;
+                //default:  // Name ascending 
+                //    comps = comps.OrderBy(s => s.StartDate);
+                //    break;
                 default:  // Name ascending 
-                    comps = comps.OrderBy(s => s.StartDate);
+                    comps = comps.OrderBy(s => s.Name);
                     break;
             }
             int pageSize = 3;
@@ -92,7 +95,26 @@ namespace Golf_Results_MVC.Controllers
             }
             return View(competition);
         }
-            
+
+        // trying to use to spit by Year -see route config added season so year would show as param not query param
+        //public ActionResult DetailsforComp(int? id, int season)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    var comp_Result = from i in db.Comp_Results
+        //                      where i.CompetitionID == id
+        //                      where i.Season == season
+        //                      select i;
+
+        //    if (id == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(comp_Result);
+        //}
+
         public ActionResult Create()
         {
             return View();

@@ -1,0 +1,74 @@
+﻿@model Golf_Results_MVC.Models.Comp_Result
+
+@{
+    ViewBag.Title = "DetailsforComp";
+}
+
+<h2>DetailsforComp</h2>
+
+<div>
+    <h4>Comp_Result</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Competition.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Competition.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Golfer.Firstname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Golfer.Firstname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Position)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Position)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Season)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Season)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GolferScore)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GolferScore)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CompResultID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

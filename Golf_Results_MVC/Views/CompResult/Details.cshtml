@@ -1,24 +1,32 @@
-﻿@model Golf_Results_MVC.Models.Competition
+﻿@model Golf_Results_MVC.Models.Comp_Result
 
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Results</h2>
+<h2>Details</h2>
 
 <div>
-    <h4>Competition</h4>
+    <h4>Comp_Result</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.Competition.Name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Name)
+            @Html.DisplayFor(model => model.Competition.Name)
         </dd>
 
-        @*<dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.Golfer.Firstname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Golfer.Firstname)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.StartDate)
         </dt>
 
@@ -32,15 +40,31 @@
 
         <dd>
             @Html.DisplayFor(model => model.EndDate)
-        </dd>*@
+        </dd>
 
-        @*<dt>
-            @Html.DisplayNameFor(model => model.FullDate)
-        </dt>*@
+        <dt>
+            @Html.DisplayNameFor(model => model.Position)
+        </dt>
 
-        @*<dd>
-            @Html.DisplayFor(model => model.FullDate)
-        </dd>*@
+        <dd>
+            @Html.DisplayFor(model => model.Position)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Season)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Season)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GolferScore)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GolferScore)
+        </dd>
         <dd>
             <table class="table">
                 <tr>
@@ -50,7 +74,7 @@
                     <th>Season</th>
 
                 </tr>
-                @foreach (var item in Model.Comp_Result.OrderByDescending(i => i.Season).ThenBy(c => c.Position)) // Order by Year then Position
+                @foreach (var item in Model) // Order by Year then Position
                 {
                     <tr>
                         <td>
@@ -74,5 +98,12 @@
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CompResultID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
