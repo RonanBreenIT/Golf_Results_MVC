@@ -74,7 +74,7 @@
                     <th>Season</th>
 
                 </tr>
-                @foreach (var item in Model) // Order by Year then Position
+                @*@foreach (var item in Model) // Order by Year then Position
                 {
                     <tr>
                         <td>
@@ -89,15 +89,15 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.Season)
                         </td>
-                    </tr>
-                }
+                    </tr>*@
+                @*}*@
             </table>
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CompResultID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
 
