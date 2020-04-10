@@ -49,11 +49,11 @@ When you deploy an application to a production web server, you must remove or di
                 new Comp_Result{CompetitionID=3, GolferID=1, Position="5", GolferScore="+6", Season= 2020, StartDate= DateTime.Parse("2020-01-16"), EndDate=DateTime.Parse("2020-01-19")},
                 new Comp_Result{CompetitionID=3, GolferID=2, Position="2", GolferScore="-4", Season= 2020, StartDate= DateTime.Parse("2020-01-16"), EndDate=DateTime.Parse("2020-01-19")},
                 new Comp_Result{CompetitionID=3, GolferID=3, Position=null, GolferScore=null, Season= 2020, StartDate= DateTime.Parse("2020-01-16"), EndDate=DateTime.Parse("2020-01-19")},
-                new Comp_Result{CompetitionID=3, GolferID=4, Position="3", GolferScore=null, Season= 2020, StartDate= DateTime.Parse("2020-01-16"), EndDate=DateTime.Parse("2020-01-19")},
+                new Comp_Result{CompetitionID=3, GolferID=4, Position=null, GolferScore=null, Season= 2020, StartDate= DateTime.Parse("2020-01-16"), EndDate=DateTime.Parse("2020-01-19")},
                 new Comp_Result{CompetitionID=3, GolferID=5, Position="1", GolferScore="-6", Season= 2020, StartDate= DateTime.Parse("2020-01-16"), EndDate=DateTime.Parse("2020-01-19")},
                 new Comp_Result{CompetitionID=1, GolferID=1, Position="1", GolferScore="-7", Season= 2019, StartDate= DateTime.Parse("2019-01-02"), EndDate=DateTime.Parse("2019-01-05")},
                 new Comp_Result{CompetitionID=1, GolferID=2, Position="2", GolferScore="-6", Season= 2019, StartDate= DateTime.Parse("2019-01-02"), EndDate=DateTime.Parse("2019-01-05")},
-                new Comp_Result{CompetitionID=1, GolferID=3, Position=null, GolferScore="-5", Season= 2019, StartDate= DateTime.Parse("2019-01-02"), EndDate=DateTime.Parse("2019-01-05")},
+                new Comp_Result{CompetitionID=1, GolferID=3, Position=null, GolferScore=null, Season= 2019, StartDate= DateTime.Parse("2019-01-02"), EndDate=DateTime.Parse("2019-01-05")},
                 new Comp_Result{CompetitionID=1, GolferID=4, Position="3", GolferScore="-4", Season= 2019, StartDate= DateTime.Parse("2019-01-02"), EndDate=DateTime.Parse("2019-01-05")},
                 new Comp_Result{CompetitionID=1, GolferID=5, Position="4", GolferScore="-3", Season= 2019, StartDate= DateTime.Parse("2019-01-02"), EndDate=DateTime.Parse("2019-01-05")},
             };

@@ -48,7 +48,7 @@ namespace Golf_Results_MVC.Models
 
         public virtual Golfer Golfer { get; set; }
 
-        //public virtual ICollection<Golfer> Golfers { get; set; }
+        //public virtual ICollection<Golfer> Golfers { get; set; } // wont initialise db if uncommented
 
         //public Comp_Results()
         //{
