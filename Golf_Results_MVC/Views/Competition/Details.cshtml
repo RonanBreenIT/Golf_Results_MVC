@@ -48,6 +48,7 @@
                     <th>Player</th>
                     <th>Player Score</th>
                     <th>Season</th>
+                    <th>Dates</th>
 
                 </tr>
                 @foreach (var item in Model.Comp_Result.OrderByDescending(i => i.Season).ThenBy(c => c.Position == null).ThenBy(d => d.Position)) // Order by Year then Position
@@ -64,6 +65,9 @@
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Season)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FullDate)
                         </td>
                     </tr>
                 }
