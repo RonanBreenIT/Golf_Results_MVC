@@ -33,7 +33,7 @@
                     <th>Player Score</th>
                     <th>Position</th>
                 </tr>
-                @foreach (var item in Model.Comp_Result)
+                @foreach (var item in Model.Comp_Result.OrderByDescending(i => i.Season))
                 {
             <tr>
                 <td>
