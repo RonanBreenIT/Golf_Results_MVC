@@ -17,6 +17,7 @@ namespace Golf_Results_MVC.Controllers
 
         public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
+            ViewBag.TotalGolfers = db.Golfers.Count();
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
 

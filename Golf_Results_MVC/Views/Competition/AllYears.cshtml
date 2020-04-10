@@ -18,7 +18,7 @@
             @Html.DisplayFor(model => model.Name)
         </dd>
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.StartDate)
         </dt>
 
@@ -32,7 +32,7 @@
 
         <dd>
             @Html.DisplayFor(model => model.EndDate)
-        </dd>
+        </dd>*@
 
         @*<dt>
                 @Html.DisplayNameFor(model => model.FullDate)
@@ -54,7 +54,7 @@
                             @Html.DisplayFor(modelItem => item.Season)
                         </td>
                         <td>
-                            @Html.ActionLink("Results", "Details", new { id = item.CompetitionID, season = item.Season }) 
+                            @Html.ActionLink("Results", "Details",  new { id = item.CompetitionID, season = item.Season }) 
                         </td>
                     </tr>
                 }
