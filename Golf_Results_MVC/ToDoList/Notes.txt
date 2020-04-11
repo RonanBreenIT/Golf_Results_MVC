@@ -1,0 +1,10 @@
+﻿1. Try Split CompResults by Season
+	Issue: Used AllYears Method to provide a list of seasons and added season route so it gets passed as a parameter such as
+	{compID}/{Season} but MVC has an issue Calling compResult from Competition so left as is for now.
+
+2. CompResultAPIController
+	Issue with Post Method. Want to check if CompID, Season and GolferID all in DB already then dont add but is always returning
+	as true as all already exist but not together. Not sure why && isn't concatenating request instead of treating all as 
+	individual requests.
+	Issue 2: Post is working as is i.e. var foundCompRes = db.Comp_Results.FirstOrDefault(x => x.CompResultID == comp_Result.CompResultID);
+	but still shows an error in Postman even though item gets added.

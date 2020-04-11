@@ -183,6 +183,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="ToDoList\Notes.txt" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -209,11 +210,8 @@
     <Content Include="Views\Competition\Index.cshtml" />
     <Content Include="Views\Competition\AllYears.cshtml" />
     <Content Include="Views\CompResult\Create.cshtml" />
-    <Content Include="Views\CompResult\Delete.cshtml" />
-    <Content Include="Views\CompResult\Details.cshtml" />
-    <Content Include="Views\CompResult\Edit.cshtml" />
-    <Content Include="Views\CompResult\Index.cshtml" />
     <Content Include="Views\Competition\DetailsforComp.cshtml" />
+    <Content Include="Views\CompResult\ResultUploaded.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
