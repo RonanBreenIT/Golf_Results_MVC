@@ -13,6 +13,7 @@ using Golf_Results_MVC.Models;
 
 namespace Golf_Results_MVC.Api
 {
+    [RoutePrefix("api/Comp")]
     public class CompetitionController : ApiController
     {
         private GolfContext db = new GolfContext();
@@ -22,15 +23,17 @@ namespace Golf_Results_MVC.Api
             db.Configuration.ProxyCreationEnabled = false; // make sure to use as had Seralisation error before - see https://stackoverflow.com/questions/23098191/failed-to-serialize-the-response-in-web-api-with-json
         }
 
-        // GET: api/Competition
+        [HttpGet]
+        [Route("all")]
         public IQueryable<Competition> GetCompetitions()
         {
             return db.Competitions;
         }
 
-        // GET: api/Competition/5
+        [HttpGet]
+        [Route("GetComp/{id}")]
         [ResponseType(typeof(Competition))]
-        public IHttpActionResult GetCompetition(int id)
+        public IHttpActionResult GetComp(int id)
         {
             Competition competition = db.Competitions.Find(id);
             if (competition == null)
@@ -41,9 +44,10 @@ namespace Golf_Results_MVC.Api
             return Ok(competition);
         }
 
-        // PUT: api/Competition/5
+        [HttpPut]
+        [Route("PutComp/{id}")]
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutCompetition(int id, Competition competition)
+        public IHttpActionResult PutComp(int id, Competition competition)
         {
             if (!ModelState.IsValid)
             {
@@ -76,9 +80,10 @@ namespace Golf_Results_MVC.Api
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Competition
+        [HttpPost]
+        [Route("PostComp", Name = "AddCompetition")]
         [ResponseType(typeof(Competition))]
-        public IHttpActionResult PostCompetition(Competition competition)
+        public IHttpActionResult PostComp(Competition competition)
         {
             if (!ModelState.IsValid)
             {
@@ -95,12 +100,14 @@ namespace Golf_Results_MVC.Api
             db.Competitions.Add(competition);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = competition.ID }, competition);
+            //return Ok();
+            return CreatedAtRoute("AddCompetition", new { id = competition.ID }, competition);
         }
 
-        // DELETE: api/Competition/5
+        [HttpDelete]
+        [Route("DeleteComp/{id}")]
         [ResponseType(typeof(Competition))]
-        public IHttpActionResult DeleteCompetition(int id)
+        public IHttpActionResult DeleteComp(int id)
         {
             Competition competition = db.Competitions.Find(id);
             if (competition == null)
