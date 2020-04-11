@@ -13,6 +13,7 @@ using Golf_Results_MVC.Models;
 
 namespace Golf_Results_MVC.Api
 {
+    [RoutePrefix("api/Golfer")]
     public class GolferController : ApiController
     {
         private GolfContext db = new GolfContext();
@@ -22,12 +23,15 @@ namespace Golf_Results_MVC.Api
             db.Configuration.ProxyCreationEnabled = false; // make sure to use as had Seralisation error before - see https://stackoverflow.com/questions/23098191/failed-to-serialize-the-response-in-web-api-with-json
         }
 
+        [HttpGet]
+        [Route("all")]
         public IQueryable<Golfer> GetGolfers()
         {
             return db.Golfers;
         }
 
-        // GET: api/Golfer/5
+        [HttpGet]
+        [Route("GetGolfer/{id}")]
         [ResponseType(typeof(Golfer))]
         public IHttpActionResult GetGolfer(int id)
         {
@@ -40,7 +44,8 @@ namespace Golf_Results_MVC.Api
             return Ok(golfer);
         }
 
-        // PUT: api/Golfer/5
+        [HttpPut]
+        [Route("PutGolfer/{id}")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutGolfer(int id, Golfer golfer)
         {
@@ -75,7 +80,8 @@ namespace Golf_Results_MVC.Api
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Golfer
+        [HttpPost]
+        [Route("PostGolfer", Name = "AddGolfer")]
         [ResponseType(typeof(Golfer))]
         public IHttpActionResult PostGolfer(Golfer golfer)
         {
@@ -96,10 +102,11 @@ namespace Golf_Results_MVC.Api
             db.Golfers.Add(golfer);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = golfer.ID }, golfer);
+            return CreatedAtRoute("AddGolfer", new { id = golfer.ID }, golfer);
         }
 
-        // DELETE: api/Golfer/5
+        [HttpDelete]
+        [Route("DeleteGolfer/{id}")]
         [ResponseType(typeof(Golfer))]
         public IHttpActionResult DeleteGolfer(int id)
         {

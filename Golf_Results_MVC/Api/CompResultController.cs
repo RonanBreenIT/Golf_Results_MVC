@@ -113,7 +113,7 @@ namespace Golf_Results_MVC.Api
         }
 
         [HttpPost]
-        [Route("PostComp_Result")]
+        [Route("PostComp_Result", Name = "AddCompResult")]
         [ResponseType(typeof(Comp_Result))]
         public IHttpActionResult PostComp_Result(Comp_Result comp_Result)
         {
@@ -147,7 +147,7 @@ namespace Golf_Results_MVC.Api
             db.Comp_Results.Add(comp_Result);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = comp_Result.CompResultID }, comp_Result);
+            return CreatedAtRoute("AddCompResult", new { id = comp_Result.CompResultID }, comp_Result);
         }
 
         [HttpDelete]

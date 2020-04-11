@@ -38,6 +38,7 @@ namespace Golf_Results_MVC.Models
         [DisplayFormat(NullDisplayText = "MC")]
         public string Position { get; set; } //? allows it to be null. If null will make missed cut.
 
+        [Range(2019, 2050, ErrorMessage = "Season can only be inputted from 2019 onwards")]
         public int Season { get; set; }
 
         [Display(Name = "Golfer Score")]
