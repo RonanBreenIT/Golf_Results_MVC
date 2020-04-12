@@ -150,6 +150,7 @@
     <Compile Include="Controllers\CompResultController.cs" />
     <Compile Include="Controllers\GolferController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImportController.cs" />
     <Compile Include="DAL\GolfContext.cs" />
     <Compile Include="DAL\GolfInitializer.cs" />
     <Compile Include="Global.asax.cs">
@@ -212,6 +213,7 @@
     <Content Include="Views\CompResult\Create.cshtml" />
     <Content Include="Views\Competition\DetailsforComp.cshtml" />
     <Content Include="Views\CompResult\ResultUploaded.cshtml" />
+    <Content Include="Views\Import\UploadGolfers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
