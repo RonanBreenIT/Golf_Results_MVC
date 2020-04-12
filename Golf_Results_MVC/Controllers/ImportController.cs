@@ -21,7 +21,7 @@ namespace Golf_Results_MVC.Controllers
         }
 
         /// <summary>
-        /// Post method for importing users 
+        /// Post method for importing Golfers 
         /// </summary>
         /// <param name="postedFile"></param>
         /// <returns></returns>
@@ -79,6 +79,80 @@ namespace Golf_Results_MVC.Controllers
                     }
 
                     return RedirectToAction("Index", "Golfer");
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.Message = ex.Message;
+                }
+            }
+            else
+            {
+                ViewBag.Message = "Please select the file first to upload.";
+            }
+            return View();
+        }
+
+        // GET: Import
+        public ActionResult UploadComps()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// Post method for importing Golfers 
+        /// </summary>
+        /// <param name="postedFile"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult UploadComps(HttpPostedFileBase postedFile)
+        {
+            if (postedFile != null)
+            {
+                try
+                {
+                    string fileExtension = Path.GetExtension(postedFile.FileName);
+
+                    //Validate uploaded file and return error.
+                    if (fileExtension != ".csv")
+                    {
+                        ViewBag.Message = "Please select the csv file with .csv extension";
+                        return View();
+                    }
+
+
+                    var comps = new List<Competition>();
+                    using (var sreader = new StreamReader(postedFile.InputStream))
+                    {
+                        //First line is header. If header is not passed in csv then we can neglect the below line.
+                        string[] headers = sreader.ReadLine().Split(',');
+                        //Loop through the records
+                        while (!sreader.EndOfStream)
+                        {
+                            string[] rows = sreader.ReadLine().Split(',');
+
+                            comps.Add(new Competition
+                            {
+                                Name = rows[0].ToString(),
+                            });
+                        }
+                    }
+
+                    foreach (Competition comp in comps.ToList())
+                    {
+                        var foundName = db.Competitions.FirstOrDefault(i => i.Name == comp.Name);
+
+                        if (foundName != null)
+                        {
+                            comps.Remove(comp);
+                        }
+                        else
+                        {
+                            db.Competitions.Add(comp);
+                            db.SaveChanges();
+                        }
+                    }
+
+                    return RedirectToAction("Index", "Competition");
                 }
                 catch (Exception ex)
                 {

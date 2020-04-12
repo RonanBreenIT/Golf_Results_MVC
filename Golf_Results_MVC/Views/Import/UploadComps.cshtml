@@ -1,14 +1,14 @@
 ﻿@{
-    ViewBag.Title = "UploadGolfers";
+    ViewBag.Title = "UploadComps";
 }
 
-<h2>Upload Golfers </h2>
+<h2>Upload Competitions</h2>
 
 <div class="container">
     <div class="tab-content">
         <div class="tab-pane active">
             <div class="row">
-                @using (Html.BeginForm("UploadGolfers", "Import", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                @using (Html.BeginForm("UploadComps", "Import", FormMethod.Post, new { enctype = "multipart/form-data" }))
                 {
                     <div class="form-group">
 
@@ -40,3 +40,5 @@
         </div>
     </div>
 </div>
+
+
