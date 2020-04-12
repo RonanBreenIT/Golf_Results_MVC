@@ -215,6 +215,7 @@
     <Content Include="Views\CompResult\ResultUploaded.cshtml" />
     <Content Include="Views\Import\UploadGolfers.cshtml" />
     <Content Include="Views\Import\UploadComps.cshtml" />
+    <Content Include="Views\Import\UploadCompResults.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

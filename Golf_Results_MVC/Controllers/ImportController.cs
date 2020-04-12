@@ -165,5 +165,86 @@ namespace Golf_Results_MVC.Controllers
             }
             return View();
         }
+
+        // GET: Import
+        public ActionResult UploadCompResults()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// Post method for importing Golfers 
+        /// </summary>
+        /// <param name="postedFile"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult UploadCompResults(HttpPostedFileBase postedFile)
+        {
+            if (postedFile != null)
+            {
+                try
+                {
+                    string fileExtension = Path.GetExtension(postedFile.FileName);
+
+                    //Validate uploaded file and return error.
+                    if (fileExtension != ".csv")
+                    {
+                        ViewBag.Message = "Please select the csv file with .csv extension";
+                        return View();
+                    }
+
+
+                    var results = new List<Comp_Result>();
+                    using (var sreader = new StreamReader(postedFile.InputStream))
+                    {
+                        //First line is header. If header is not passed in csv then we can neglect the below line.
+                        string[] headers = sreader.ReadLine().Split(',');
+                        //Loop through the records
+                        while (!sreader.EndOfStream)
+                        {
+                            string[] rows = sreader.ReadLine().Split(',');
+
+
+                            results.Add(new Comp_Result
+                            {
+                                CompetitionID = int.Parse(rows[0].ToString()),
+                                Season = int.Parse(rows[1].ToString()),
+                                StartDate = DateTime.Parse(rows[2].ToString()),
+                                EndDate = DateTime.Parse(rows[3].ToString()),
+                                GolferID = int.Parse(rows[4].ToString()),
+                                Position = rows[5].ToString(),
+                                GolferScore = rows[6].ToString(),
+                            }); 
+                        }
+                    }
+
+                    foreach (Comp_Result comp in results.ToList())
+                    {             
+                        var foundMatch = db.Comp_Results.Where(x => x.CompetitionID == comp.CompetitionID && x.Season == comp.Season && x.GolferID == comp.GolferID).FirstOrDefault();
+
+                        if (foundMatch != null)
+                        {
+                            results.Remove(comp);
+                        }
+                        else
+                        {
+                            db.Comp_Results.Add(comp);
+                            db.SaveChanges();
+                        }
+                    }
+
+                    return RedirectToAction("Index", "Competition");
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.Message = ex.Message;
+                }
+            }
+            else
+            {
+                ViewBag.Message = "Please select the file first to upload.";
+            }
+            return View();
+        }
     }
 }

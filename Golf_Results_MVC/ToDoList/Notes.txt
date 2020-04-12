@@ -5,6 +5,6 @@
 2. CompResultAPIController
 	Issue with Post Method. Want to check if CompID, Season and GolferID all in DB already then dont add but is always returning
 	as true as all already exist but not together. Not sure why && isn't concatenating request instead of treating all as 
-	individual requests.
+	individual requests. **This shoudl work, taken from upload var foundMatch = db.Comp_Results.Where(x => x.CompetitionID == comp.CompetitionID && x.Season == comp.Season && x.GolferID == comp.GolferID).FirstOrDefault();**
 	Issue 2: Post is working as is i.e. var foundCompRes = db.Comp_Results.FirstOrDefault(x => x.CompResultID == comp_Result.CompResultID);
-	but still shows an error in Postman even though item gets added.
+	but still shows an error in Postman even though item gets added. **Fixed**
