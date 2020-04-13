@@ -24,6 +24,6 @@ namespace Golf_Results_MVC.Models
             }
         }
 
-        public virtual ICollection<Comp_Result> Comp_Result { get; set; }
+        public virtual ICollection<Comp_Result> Comp_Result { get; set; } // This needed to display all their results
     }
 }
