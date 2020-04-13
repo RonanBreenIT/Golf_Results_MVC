@@ -122,26 +122,11 @@ namespace Golf_Results_MVC.Api
                 return BadRequest(ModelState);
             }
 
-            // may revisit a better way to add new CompResult if Comp ID, Season and Golfer ID already Exists
+            var foundCompRes = db.Comp_Results.Where(x => x.CompetitionID == comp_Result.CompetitionID && x.Season == comp_Result.Season && x.GolferID == comp_Result.GolferID).FirstOrDefault();
 
-            //var foundCompRes = from i in db.Comp_Results
-            //                  where i.CompetitionID == comp_Result.CompetitionID
-            //                  where i.Season == comp_Result.Season
-            //                  where i.GolferID == comp_Result.GolferID 
-            //                  select i;
-
-            //var foundCompRes = db.Comp_Results.Where(x => (x.CompetitionID == comp_Result.CompetitionID) && (x.Season == comp_Result.Season) && (x.GolferID == comp_Result.GolferID));
-            var foundCompRes = db.Comp_Results.FirstOrDefault(x => x.CompResultID == comp_Result.CompResultID);
-
-            //var foundComp = db.Comp_Results.FirstOrDefault(i => i.CompetitionID == comp_Result.CompetitionID);
-            //var foundSeason = db.Comp_Results.FirstOrDefault(i => i.Season == comp_Result.Season);
-            //var foundGolfer = db.Comp_Results.FirstOrDefault(i => i.GolferID == comp_Result.GolferID);
-
-            //if ((foundComp != null) && (foundSeason != null) && (foundGolfer != null))
             if (foundCompRes != null)
             {
-                //return BadRequest("Competition Results for that Golfer, Comp ID and Year already exists");
-                return BadRequest("Comp Result ID already exists");
+                return BadRequest("Competition Results for that Golfer, Comp ID and Year already exists");
             }
 
             db.Comp_Results.Add(comp_Result);
