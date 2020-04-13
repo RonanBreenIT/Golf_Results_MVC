@@ -25,6 +25,7 @@ namespace Golf_Results_MVC.Api
 
         [HttpGet]
         [Route("all")]
+        [Authorize(Roles = "user, admin")]
         public IQueryable<Comp_Result> GetComp_Results()
         {
             return db.Comp_Results;
@@ -32,6 +33,7 @@ namespace Golf_Results_MVC.Api
 
         [HttpGet]
         [Route("GetCompResultID/{id}")]
+        [Authorize(Roles = "user, admin")]
         [ResponseType(typeof(Comp_Result))]
         public IHttpActionResult GetCompResultID(int id)
         {
@@ -46,6 +48,7 @@ namespace Golf_Results_MVC.Api
 
         [HttpGet]
         [Route("GetCompID/{compID}")]
+        [Authorize(Roles = "user, admin")]
         [ResponseType(typeof(Comp_Result))]
         public IHttpActionResult GetCompID(int compID)
         {
@@ -60,6 +63,7 @@ namespace Golf_Results_MVC.Api
 
         [HttpGet]
         [Route("GetCompResultPerSeason/{compID}/{season}")]
+        [Authorize(Roles = "user, admin")]
         [ResponseType(typeof(Comp_Result))]
         public IHttpActionResult GetCompResultPerSeason(int compID, int season)
         {
@@ -78,6 +82,7 @@ namespace Golf_Results_MVC.Api
 
         [HttpPut]
         [Route("PutComp_Result/{id}")]
+        [Authorize(Roles = "admin")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutComp_Result(int id, Comp_Result comp_Result)
         {
@@ -114,6 +119,7 @@ namespace Golf_Results_MVC.Api
 
         [HttpPost]
         [Route("PostComp_Result", Name = "AddCompResult")]
+        [Authorize(Roles = "admin")]
         [ResponseType(typeof(Comp_Result))]
         public IHttpActionResult PostComp_Result(Comp_Result comp_Result)
         {
@@ -137,6 +143,7 @@ namespace Golf_Results_MVC.Api
 
         [HttpDelete]
         [Route("DeleteComp_Result/{id}")]
+        [Authorize(Roles = "admin")]
         [ResponseType(typeof(Comp_Result))]
         public IHttpActionResult DeleteComp_Result(int id)
         {

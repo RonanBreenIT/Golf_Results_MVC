@@ -8,3 +8,7 @@
 	individual requests. **This shoudl work, taken from upload var foundMatch = db.Comp_Results.Where(x => x.CompetitionID == comp.CompetitionID && x.Season == comp.Season && x.GolferID == comp.GolferID).FirstOrDefault();**
 	Issue 2: Post is working as is i.e. var foundCompRes = db.Comp_Results.FirstOrDefault(x => x.CompResultID == comp_Result.CompResultID);
 	but still shows an error in Postman even though item gets added. **Fixed**
+
+3. Add Admin Authorisation for API - All 
+
+4. Add Admin Authorisation for UI - Only C, U, D... R (Read) should be accessible for all
