@@ -25,6 +25,7 @@ namespace Golf_Results_MVC.Api
 
         [HttpGet]
         [Route("all")]
+        [Authorize(Roles = "user, admin")]
         public IQueryable<Competition> GetCompetitions()
         {
             return db.Competitions;
@@ -32,6 +33,7 @@ namespace Golf_Results_MVC.Api
 
         [HttpGet]
         [Route("GetComp/{id}")]
+        [Authorize(Roles = "user, admin")]
         [ResponseType(typeof(Competition))]
         public IHttpActionResult GetComp(int id)
         {
@@ -46,6 +48,7 @@ namespace Golf_Results_MVC.Api
 
         [HttpPut]
         [Route("PutComp/{id}")]
+        [Authorize(Roles = "admin")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutComp(int id, Competition competition)
         {
@@ -82,6 +85,7 @@ namespace Golf_Results_MVC.Api
 
         [HttpPost]
         [Route("PostComp", Name = "AddCompetition")]
+        [Authorize(Roles = "admin")]
         [ResponseType(typeof(Competition))]
         public IHttpActionResult PostComp(Competition competition)
         {
@@ -106,6 +110,7 @@ namespace Golf_Results_MVC.Api
 
         [HttpDelete]
         [Route("DeleteComp/{id}")]
+        [Authorize(Roles = "admin")]
         [ResponseType(typeof(Competition))]
         public IHttpActionResult DeleteComp(int id)
         {

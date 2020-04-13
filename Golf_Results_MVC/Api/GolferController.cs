@@ -10,6 +10,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using Golf_Results_MVC.DAL;
 using Golf_Results_MVC.Models;
+using Golf_Results_MVC.Providers;
 
 namespace Golf_Results_MVC.Api
 {
@@ -25,6 +26,7 @@ namespace Golf_Results_MVC.Api
 
         [HttpGet]
         [Route("all")]
+        [Authorize(Roles = "user, admin")]
         public IQueryable<Golfer> GetGolfers()
         {
             return db.Golfers;
@@ -32,6 +34,7 @@ namespace Golf_Results_MVC.Api
 
         [HttpGet]
         [Route("GetGolfer/{id}")]
+        [Authorize(Roles = "user, admin")]
         [ResponseType(typeof(Golfer))]
         public IHttpActionResult GetGolfer(int id)
         {
@@ -46,6 +49,7 @@ namespace Golf_Results_MVC.Api
 
         [HttpPut]
         [Route("PutGolfer/{id}")]
+        [Authorize(Roles = "admin")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutGolfer(int id, Golfer golfer)
         {
@@ -82,6 +86,7 @@ namespace Golf_Results_MVC.Api
 
         [HttpPost]
         [Route("PostGolfer", Name = "AddGolfer")]
+        [Authorize(Roles = "admin")]
         [ResponseType(typeof(Golfer))]
         public IHttpActionResult PostGolfer(Golfer golfer)
         {
@@ -107,6 +112,7 @@ namespace Golf_Results_MVC.Api
 
         [HttpDelete]
         [Route("DeleteGolfer/{id}")]
+        [Authorize(Roles = "admin")]
         [ResponseType(typeof(Golfer))]
         public IHttpActionResult DeleteGolfer(int id)
         {
