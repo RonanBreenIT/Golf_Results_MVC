@@ -12,9 +12,6 @@ namespace Golf_Results_MVC.Models
         [Display(Name = "Name"), StringLength(50, MinimumLength = 1, ErrorMessage = "Competition name cannot be longer than 50 characters or null.")]
         public string Name { get; set; }
 
-        public virtual ICollection<Comp_Result> Comp_Result { get; set; }
-
-       
-
+        public virtual ICollection<Comp_Result> Comp_Result { get; set; } // This needed to display all their results
     }
 }
