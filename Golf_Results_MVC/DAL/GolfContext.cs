@@ -1,23 +1,42 @@
 ﻿using Golf_Results_MVC.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace Golf_Results_MVC.DAL
 {
-    public class GolfContext : DbContext
+    public class GolfContext : IdentityDbContext<ApplicationUser>
     {
-        public GolfContext() : base("GolfContext") // This passes name of the connection string to the constructor
-        {
-        }
-
         public DbSet<Golfer> Golfers { get; set; }
         public DbSet<Competition> Competitions { get; set; }
         public DbSet<Comp_Result> Comp_Results { get; set; }
 
+        public GolfContext() : base("GolfContext", throwIfV1Schema: false) // This passes name of the connection string to the constructor
+        {
+        }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            base.OnModelCreating(modelBuilder); // This line needed or nothing will work see https://entityframework.net/knowledge-base/27660203/entity-framework-6-1-code-first-migration-error--entitytype--identityuserrole--has-no-key-defined
+        }
+
+        public static GolfContext Create()
+        {
+            return new GolfContext();
         }
 
     }
+
+    //public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    //{
+    //    public ApplicationDbContext()
+    //        : base("DefaultConnection", throwIfV1Schema: false)
+    //    {
+    //    }
+
+    //    public static ApplicationDbContext Create()
+    //    {
+    //        return new ApplicationDbContext();
+    //    }
+    //}
 }
