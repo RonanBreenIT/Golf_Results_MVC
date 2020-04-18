@@ -9,7 +9,11 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <!-- Hidden Create view for all user bar Admin-->
+    @if (User.IsInRole("admin"))
+    {
+        @Html.ActionLink("Create New", "Create")
+    }
 </p>
 @using (Html.BeginForm("Index", "Golfer", FormMethod.Get))
 {
@@ -34,9 +38,17 @@
                     @Html.DisplayFor(modelItem => item.FullName)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                    @Html.ActionLink("Results", "Details", new { id = item.ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                    <!-- Hidden Edit and Delete Links for all user bar Admin-->
+                    @if (User.IsInRole("admin"))
+                    {
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) @: &nbsp;|&nbsp;
+                        @Html.ActionLink("Results", "Details", new { id = item.ID }) @: &nbsp;|&nbsp;
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Results", "Details", new { id = item.ID })
+                    }
                 </td>
             </tr>
         }

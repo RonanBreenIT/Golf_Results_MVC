@@ -69,6 +69,7 @@ namespace Golf_Results_MVC.Controllers
         }
 
         // GET: Golfer/Create
+        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             return View();
@@ -77,6 +78,7 @@ namespace Golf_Results_MVC.Controllers
         // POST: Golfer/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Surname, Firstname")]Golfer golfer)
@@ -99,6 +101,7 @@ namespace Golf_Results_MVC.Controllers
         }
 
         // GET: Golfer/Edit/5
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -116,6 +119,7 @@ namespace Golf_Results_MVC.Controllers
         // POST: Golfer/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "admin")]
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
         public ActionResult EditPost(int? id)
@@ -144,6 +148,7 @@ namespace Golf_Results_MVC.Controllers
         }
 
         // GET: Golfer/Delete/5
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id, bool? saveChangesError = false)
         {
             if (id == null)
@@ -163,6 +168,7 @@ namespace Golf_Results_MVC.Controllers
         }
 
         // POST: Golfer/Delete/5
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id)

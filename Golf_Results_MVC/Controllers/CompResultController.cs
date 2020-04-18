@@ -18,6 +18,7 @@ namespace Golf_Results_MVC.Controllers
 
 
         // GET: CompResult/Create
+        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             ViewBag.CompetitionID = new SelectList(db.Competitions, "ID", "Name").OrderBy(i => i.Text);
@@ -28,6 +29,7 @@ namespace Golf_Results_MVC.Controllers
         // POST: CompResult/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "CompResultID,CompetitionID,StartDate,EndDate,GolferID,Position,Season,GolferScore")] Comp_Result comp_Result)

@@ -25,8 +25,12 @@
                         <li>@Html.ActionLink("Contact", "Contact", "Home")</li>-->
                     <li>@Html.ActionLink("Competitions", "Index", "Competition")</li>
                     <li>@Html.ActionLink("Golfers", "Index", "Golfer")</li>
-                    <li>@Html.ActionLink("Results", "Create", "CompResult")</li>
+                    @if (User.IsInRole("admin"))
+                    {
+                        <li>@Html.ActionLink("Results", "Create", "CompResult")</li>
+                    }
                 </ul>
+                @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>

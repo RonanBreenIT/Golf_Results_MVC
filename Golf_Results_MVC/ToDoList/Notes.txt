@@ -12,3 +12,9 @@
 3. Add Admin Authorisation for API - All 
 
 4. Add Admin Authorisation for UI - Only C, U, D... R (Read) should be accessible for all
+	
+
+	** look add why Dermots Start up method not adding NetRoles and details. - Can add entries in DB anyway if needs
+	be **
+	** Looks NetRoles - add myself as Admin, create other roles, user (subscriber) and viewer
+	
