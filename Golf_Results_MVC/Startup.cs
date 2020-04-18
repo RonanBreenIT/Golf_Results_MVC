@@ -66,7 +66,7 @@ namespace Golf_Results_MVC
         //            var result1 = UserManager.AddToRole(user.Id, "admin");
         //        }
         //    }
-        }
+        //}
     }
 }
 
