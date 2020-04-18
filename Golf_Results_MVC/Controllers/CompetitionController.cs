@@ -115,6 +115,7 @@ namespace Golf_Results_MVC.Controllers
         //    return View(comp_Result);
         //}
 
+        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             return View();
@@ -123,6 +124,7 @@ namespace Golf_Results_MVC.Controllers
         // POST: Competition/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Name, StartDate, EndDate")]Competition comp)
@@ -145,6 +147,7 @@ namespace Golf_Results_MVC.Controllers
         }
 
         // GET: Competition/Edit/5
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -162,6 +165,7 @@ namespace Golf_Results_MVC.Controllers
         // POST: Competition/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "admin")]
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
         public ActionResult EditPost(int? id)
@@ -189,6 +193,7 @@ namespace Golf_Results_MVC.Controllers
         }
 
         // GET: Competition/Delete/5
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -204,6 +209,7 @@ namespace Golf_Results_MVC.Controllers
         }
 
         // POST: Competition/Delete/5
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id)

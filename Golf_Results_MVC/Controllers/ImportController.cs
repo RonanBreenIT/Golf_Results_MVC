@@ -14,7 +14,9 @@ namespace Golf_Results_MVC.Controllers
 
         private GolfContext db = new GolfContext();
 
+
         // GET: Import
+        [Authorize(Roles = "admin")]
         public ActionResult UploadGolfers()
         {
             return View();
@@ -25,6 +27,7 @@ namespace Golf_Results_MVC.Controllers
         /// </summary>
         /// <param name="postedFile"></param>
         /// <returns></returns>
+        [Authorize(Roles = "admin")]
         [HttpPost]
         public ActionResult UploadGolfers(HttpPostedFileBase postedFile)
         {
@@ -93,6 +96,7 @@ namespace Golf_Results_MVC.Controllers
         }
 
         // GET: Import
+        [Authorize(Roles = "admin")]
         public ActionResult UploadComps()
         {
             return View();
@@ -103,6 +107,7 @@ namespace Golf_Results_MVC.Controllers
         /// </summary>
         /// <param name="postedFile"></param>
         /// <returns></returns>
+        [Authorize(Roles = "admin")]
         [HttpPost]
         public ActionResult UploadComps(HttpPostedFileBase postedFile)
         {
@@ -167,6 +172,7 @@ namespace Golf_Results_MVC.Controllers
         }
 
         // GET: Import
+        [Authorize(Roles = "admin")]
         public ActionResult UploadCompResults()
         {
             return View();
@@ -177,6 +183,7 @@ namespace Golf_Results_MVC.Controllers
         /// </summary>
         /// <param name="postedFile"></param>
         /// <returns></returns>
+        [Authorize(Roles = "admin")]
         [HttpPost]
         public ActionResult UploadCompResults(HttpPostedFileBase postedFile)
         {
