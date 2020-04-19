@@ -15,6 +15,7 @@ using Golf_Results_MVC.DAL;
 
 namespace Golf_Results_MVC
 {
+    // Purpose - Security, Login, Registering, Authorising 
     public class EmailService : IIdentityMessageService
     {
         public Task SendAsync(IdentityMessage message)

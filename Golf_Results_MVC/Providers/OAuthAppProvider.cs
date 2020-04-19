@@ -8,8 +8,12 @@ using System.Web;
 
 namespace Golf_Results_MVC.Providers
 {
+    // Purpose is web API authorisation
     public class OAuthAppProvider : OAuthAuthorizationServerProvider
     {
+        /* In the below code we have a couple of hardcoded users with the roles of admin and user. 
+         In reality the names and passwords would be checked against the user table in the database. */
+
         public override Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
             return Task.Factory.StartNew(() =>

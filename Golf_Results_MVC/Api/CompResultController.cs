@@ -127,7 +127,7 @@ namespace Golf_Results_MVC.Api
             {
                 return BadRequest(ModelState);
             }
-
+            // Checks for Comp ID match, if matches checks for season matches, if matches checks for golfer ID. All three connditions need to be met
             var foundCompRes = db.Comp_Results.Where(x => x.CompetitionID == comp_Result.CompetitionID && x.Season == comp_Result.Season && x.GolferID == comp_Result.GolferID).FirstOrDefault();
 
             if (foundCompRes != null)

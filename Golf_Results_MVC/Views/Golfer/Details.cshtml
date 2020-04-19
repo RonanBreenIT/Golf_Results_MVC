@@ -33,22 +33,23 @@
                     <th>Player Score</th>
                     <th>Position</th>
                 </tr>
+                <!-- Displays all golf Results-->
                 @foreach (var item in Model.Comp_Result.OrderByDescending(i => i.Season))
                 {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Competition.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Season)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.GolferScore)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Position)
-                </td>
-            </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Competition.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Season)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.GolferScore)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Position)
+                        </td>
+                    </tr>
                 }
             </table>
         </dd>

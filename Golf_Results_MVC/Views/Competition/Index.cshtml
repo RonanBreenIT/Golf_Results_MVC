@@ -9,7 +9,7 @@
 <h2>Index</h2>
 
 <p>
-    <!-- Hidden Create view for all user bar Admin-->
+    <!-- Hidden Create view for all user bar admin-->
     @if (User.IsInRole("admin"))
     {
         @Html.ActionLink("Create New", "Create")
@@ -28,12 +28,6 @@
             <th>
                 @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
             </th>
-            @*<th>
-                @Html.ActionLink("Start Date", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
-            </th>
-            <th>
-                @Html.ActionLink("End Date", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
-            </th>*@
             <th></th>
         </tr>
 
@@ -43,14 +37,8 @@
         <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.StartDate)
-        </td>
         <td>
-            @Html.DisplayFor(modelItem => item.EndDate)
-        </td>*@
-        <td>
-            <!-- Hidden Edit and Delete Links for all user bar Admin-->
+            <!-- Hidden Edit and Delete Links for all user bar admin-->
             @if (User.IsInRole("admin"))
                     {
                         @Html.ActionLink("Edit", "Edit", new { id = item.ID }) @: &nbsp;|&nbsp;

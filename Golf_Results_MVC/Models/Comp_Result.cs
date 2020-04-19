@@ -36,9 +36,9 @@ namespace Golf_Results_MVC.Models
         public int GolferID { get; set; }
 
         [DisplayFormat(NullDisplayText = "MC")]
-        public string Position { get; set; } //? allows it to be null. If null will make missed cut.
+        public string Position { get; set; } //If null will make missed cut.
 
-        [Range(2019, 2050, ErrorMessage = "Season can only be inputted from 2019 onwards")]
+        [Range(2019, 2100, ErrorMessage = "Season can only be inputted from 2019 onwards")] // Can increase from 2100 in time
         public int Season { get; set; }
 
         [Display(Name = "Golfer Score")]
@@ -49,6 +49,7 @@ namespace Golf_Results_MVC.Models
 
         public virtual Golfer Golfer { get; set; }
 
+        // Not using as yet where Comp_Result holds a collection of Golfers but may revisit as would make sense for Comp_result create page. 
         //public virtual ICollection<Golfer> Golfers { get; set; } // wont initialise db if uncommented
 
         //public Comp_Results()

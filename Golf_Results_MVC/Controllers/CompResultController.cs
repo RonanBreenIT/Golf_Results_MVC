@@ -21,7 +21,7 @@ namespace Golf_Results_MVC.Controllers
         [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
-            ViewBag.CompetitionID = new SelectList(db.Competitions, "ID", "Name").OrderBy(i => i.Text);
+            ViewBag.CompetitionID = new SelectList(db.Competitions, "ID", "Name").OrderBy(i => i.Text); // Shows the Comp Name instead of ID
             ViewBag.GolferID = new SelectList(db.Golfers, "ID", "FullName").OrderBy(i => i.Text);
             return View();
         }
@@ -32,7 +32,7 @@ namespace Golf_Results_MVC.Controllers
         [Authorize(Roles = "admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CompResultID,CompetitionID,StartDate,EndDate,GolferID,Position,Season,GolferScore")] Comp_Result comp_Result)
+        public ActionResult Create([Bind(Include = "CompResultID,CompetitionID,StartDate,EndDate,GolferID,Position,Season,GolferScore")] Comp_Result comp_Result) // Bind makes sure only the variables mentioned are entered
         {
             if (ModelState.IsValid)
             {
@@ -47,6 +47,7 @@ namespace Golf_Results_MVC.Controllers
             return View(comp_Result);
         }
 
+        // Displays message to say upload was a success
         public ActionResult ResultUploaded()
         {
             ViewBag.Message = "Result for Comp Added Successfully";
@@ -54,7 +55,7 @@ namespace Golf_Results_MVC.Controllers
         }
 
 
-
+        // Don't think needed yet but may change this. Dont have an index page so see how can be worked.
         //// GET: CompResult/Edit/5
         //public ActionResult Edit(int? id)
         //{

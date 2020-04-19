@@ -11,7 +11,7 @@ namespace Golf_Results_MVC
 
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{id}/{season}",
+                url: "{controller}/{action}/{id}/{season}", // added season if split results by season
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional, season = UrlParameter.Optional }
             );
         }

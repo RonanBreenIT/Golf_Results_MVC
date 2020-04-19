@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
+// Purpose - Security, Login, Registering, Authorising 
 namespace Golf_Results_MVC.Models
 {
     public class ExternalLoginConfirmationViewModel

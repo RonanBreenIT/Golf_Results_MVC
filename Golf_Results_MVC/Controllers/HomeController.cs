@@ -9,6 +9,7 @@ namespace Golf_Results_MVC.Controllers
             return View();
         }
 
+        // Not using as yet
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -16,6 +17,8 @@ namespace Golf_Results_MVC.Controllers
             return View();
         }
 
+
+        // Not using as yet
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";

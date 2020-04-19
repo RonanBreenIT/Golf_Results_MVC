@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace Golf_Results_MVC.Controllers
 {
+    // This controllers allows us to upload bulk CSV's instead of manually entering all details. 
     public class ImportController : Controller
     {
 
@@ -57,22 +58,23 @@ namespace Golf_Results_MVC.Controllers
 
                             golfers.Add(new Golfer
                             {
-                                //ID = int.Parse(rows[0].ToString()),
+                                //ID = int.Parse(rows[0].ToString()), // dont need
                                 Firstname = rows[0].ToString(),
                                 Surname = rows[1].ToString(),
-                                //FullName = int.Parse(rows[3].ToString())
+                                //FullName = int.Parse(rows[3].ToString()) // dont need
                             });
                         }
                     }
                     
                     foreach (Golfer golfer in golfers.ToList())
                     {
+                        // here we are checking if golfer in our upload list is already in the db
                         var foundFName = db.Golfers.FirstOrDefault(i => i.Firstname == golfer.Firstname);
                         var foundSName = db.Golfers.FirstOrDefault(i => i.Surname == golfer.Surname);
                         
                         if ((foundFName != null) && (foundSName != null))
                         {
-                            golfers.Remove(golfer);
+                            golfers.Remove(golfer); //... and if golfer is already in db we just remove from the list before uploading
                         }
                         else
                         {
@@ -226,7 +228,8 @@ namespace Golf_Results_MVC.Controllers
                     }
 
                     foreach (Comp_Result comp in results.ToList())
-                    {             
+                    {    
+                        // here we check for record with CompID, Season, GolferID conditions all matching.
                         var foundMatch = db.Comp_Results.Where(x => x.CompetitionID == comp.CompetitionID && x.Season == comp.Season && x.GolferID == comp.GolferID).FirstOrDefault();
 
                         if (foundMatch != null)

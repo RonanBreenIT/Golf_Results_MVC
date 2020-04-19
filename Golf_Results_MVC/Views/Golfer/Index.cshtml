@@ -41,7 +41,7 @@
                     <!-- Hidden Edit and Delete Links for all user bar Admin-->
                     @if (User.IsInRole("admin"))
                     {
-                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) @: &nbsp;|&nbsp;
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) @: &nbsp;|&nbsp; 
                         @Html.ActionLink("Results", "Details", new { id = item.ID }) @: &nbsp;|&nbsp;
                         @Html.ActionLink("Delete", "Delete", new { id = item.ID })
                     }

@@ -25,7 +25,7 @@ namespace Golf_Results_MVC.Api
 
         [HttpGet]
         [Route("all")]
-        [Authorize(Roles = "user, admin")]
+        [Authorize(Roles = "user, admin")] // Authorise user and admin to read 
         public IQueryable<Competition> GetCompetitions()
         {
             return db.Competitions;
@@ -48,7 +48,7 @@ namespace Golf_Results_MVC.Api
 
         [HttpPut]
         [Route("PutComp/{id}")]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin")] // Authorise admin only to create, update, delete
         [ResponseType(typeof(void))]
         public IHttpActionResult PutComp(int id, Competition competition)
         {

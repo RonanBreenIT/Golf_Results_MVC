@@ -6,7 +6,9 @@ namespace Golf_Results_MVC.DAL
 {
     /*When dont want to use initializer i.e. when going live follow here - https://docs.microsoft.com/en-us/ef/ef6/fundamentals/configuring/config-file Note
 
-When you deploy an application to a production web server, you must remove or disable code that drops and re-creates the database. */
+      *When you deploy an application to a production web server, you must remove or disable code that drops and re-creates the database. */
+    
+    // This seeds the data below automatically to our db. This is for testing purposes.
     public class GolfInitializer : System.Data.Entity.DropCreateDatabaseIfModelChanges<GolfContext> // This drops and recreates db each time using seed method. Need to use CF Migrations when going live as this is fine for testing but can't lose all data in live each time schema is changed.
     {
         protected override void Seed(GolfContext context)

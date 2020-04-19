@@ -22,7 +22,7 @@ namespace Golf_Results_MVC
             {
                 TokenEndpointPath = new PathString("/token"),
                 Provider = new OAuthAppProvider(),
-                AccessTokenExpireTimeSpan = TimeSpan.FromDays(200),
+                AccessTokenExpireTimeSpan = TimeSpan.FromDays(200), // Sets the days until token expires for API
                 AllowInsecureHttp = true
             };
         }
@@ -33,7 +33,7 @@ namespace Golf_Results_MVC
             ConfigureAuth(app);
         }
 
-        // If want add an Admin automatically. 
+        // If want add an Admin automatically can use this. 
         //private void createRolesandUsers()
         //{
         //    GolfContext context = new GolfContext();
