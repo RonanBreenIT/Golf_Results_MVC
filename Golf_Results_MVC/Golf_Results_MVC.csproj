@@ -304,11 +304,16 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImportController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="DAL\GolfConfiguration.cs" />
     <Compile Include="DAL\GolfContext.cs" />
     <Compile Include="DAL\GolfInitializer.cs" />
+    <Compile Include="DAL\GolfInterceptorLogging.cs" />
+    <Compile Include="DAL\GolfInterceptorTransientErrors.cs.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Logging\ILogger.cs" />
+    <Compile Include="Logging\Logger.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Competition.cs" />
     <Compile Include="Models\Comp_Result.cs" />

@@ -2,6 +2,8 @@
 using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.Http;
+using Golf_Results_MVC.DAL;
+using System.Data.Entity.Infrastructure.Interception;
 
 namespace Golf_Results_MVC
 {
@@ -14,6 +16,10 @@ namespace Golf_Results_MVC
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            /*These lines of code below are what causes your interceptor code 
+             * to be run when Entity Framework sends queries to the database.*/
+            DbInterception.Add(new GolfInterceptorTransientErrors());
+            DbInterception.Add(new GolfInterceptorLogging());
         }
     }
 }

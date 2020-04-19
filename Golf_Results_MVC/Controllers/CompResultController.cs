@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Golf_Results_MVC.DAL;
 using Golf_Results_MVC.Models;
+using System.Data.Entity.Infrastructure;
 using PagedList;
 
 namespace Golf_Results_MVC.Controllers
