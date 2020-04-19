@@ -347,6 +347,7 @@
     <Content Include="Images\Golf7.jpg" />
     <Content Include="Images\Golf8.jpg" />
     <Content Include="Images\Golf9.PNG" />
+    <Content Include="Images\Golfers1.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />

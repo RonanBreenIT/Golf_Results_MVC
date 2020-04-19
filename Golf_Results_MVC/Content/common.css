@@ -1,15 +1,28 @@
 ﻿
 
 body {
-    background: url("../Images/Golf15.png") no-repeat center center fixed;
-    background-size: cover;
- 
+    /*background: url("../Images/Golf15.png") no-repeat center center fixed;
+    background-size: cover;*/
     padding-top: 70px;
     padding-bottom: 20px;
 }
 
 .jumbotron {
     background: url("../Images/Golf16.jpg") no-repeat center center fixed;
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
+
+.Golfers .jumbotron {
+    background: url("../Images/Golfers1.jpg") no-repeat center center fixed;
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
+
+.Comps .jumbotron {
+    background: url("../Images/Golf10.jpg") no-repeat center center fixed;
     background-size: cover;
     background-position: center;
     color: white;
