@@ -25,6 +25,7 @@
                         <li>@Html.ActionLink("Contact", "Contact", "Home")</li>-->
                     <li>@Html.ActionLink("Competitions", "Index", "Competition")</li>
                     <li>@Html.ActionLink("Golfers", "Index", "Golfer")</li>
+                    <!-- Only to display Results to admins-->
                     @if (User.IsInRole("admin"))
                     {
                         <li>@Html.ActionLink("Results", "Create", "CompResult")</li>

@@ -5,6 +5,7 @@ using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace Golf_Results_MVC.DAL
 {
+    // This our Db Set up. Inheriting App user so we can use roles (admin, user etc..) in controllers, views etc. 
     public class GolfContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Golfer> Golfers { get; set; }
@@ -17,7 +18,7 @@ namespace Golf_Results_MVC.DAL
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-            base.OnModelCreating(modelBuilder); // This line needed or nothing will work see https://entityframework.net/knowledge-base/27660203/entity-framework-6-1-code-first-migration-error--entitytype--identityuserrole--has-no-key-defined
+            base.OnModelCreating(modelBuilder); // This line needed or nothing will work after adding auhtorisation for MVC see https://entityframework.net/knowledge-base/27660203/entity-framework-6-1-code-first-migration-error--entitytype--identityuserrole--has-no-key-defined
         }
 
         public static GolfContext Create()
@@ -26,17 +27,4 @@ namespace Golf_Results_MVC.DAL
         }
 
     }
-
-    //public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
-    //{
-    //    public ApplicationDbContext()
-    //        : base("DefaultConnection", throwIfV1Schema: false)
-    //    {
-    //    }
-
-    //    public static ApplicationDbContext Create()
-    //    {
-    //        return new ApplicationDbContext();
-    //    }
-    //}
 }

@@ -7,6 +7,7 @@ using Swashbuckle.Application;
 
 namespace Golf_Results_MVC
 {
+    // Swagger for API - http://localhost:55215/swagger/ui/index for local use
     public class SwaggerConfig
     {
         public static void Register()

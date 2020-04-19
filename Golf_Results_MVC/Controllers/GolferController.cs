@@ -36,7 +36,7 @@ namespace Golf_Results_MVC.Controllers
                           select g;
             if (!String.IsNullOrEmpty(searchString))
             {
-                golfers = golfers.Where(s => s.Surname.Contains(searchString)
+                golfers = golfers.Where(s => s.Surname.Contains(searchString) // Search goes through both firstname and surname
                                        || s.Firstname.Contains(searchString));
             }
             switch (sortOrder)

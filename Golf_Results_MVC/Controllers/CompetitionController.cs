@@ -22,7 +22,6 @@ namespace Golf_Results_MVC.Controllers
         {
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-           // ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
 
             if (searchString != null)
             {
@@ -40,63 +39,40 @@ namespace Golf_Results_MVC.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                comps = comps.Where(s => s.Name.Contains(searchString));                      
+                comps = comps.Where(s => s.Name.Contains(searchString)); // Search box check if string contains whats entered
             }
-            switch (sortOrder)
+            switch (sortOrder) // Sort the order by name
             {
                 case "name_desc":
                     comps = comps.OrderByDescending(s => s.Name);
                     break;
-                //case "Date":
-                //    comps = comps.OrderBy(s => s.StartDate);
-                //    break;
-                //case "date_desc":
-                //    comps= comps.OrderByDescending(s => s.StartDate);
-                //    break;
-                //default:  // Name ascending 
-                //    comps = comps.OrderBy(s => s.StartDate);
-                //    break;
                 default:  // Name ascending 
                     comps = comps.OrderBy(s => s.Name);
                     break;
             }
-            int pageSize = 3;
+            int pageSize = 3; // Sets the number of records to display on the page
             int pageNumber = (page ?? 1);
             return View(comps.ToPagedList(pageNumber, pageSize));
         }
 
+        // Purpose is to display each Comp season and so users can click season and return only results for that season in method below. 
         // GET: Competition/AllYears/5
-        public ActionResult AllYears(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Competition competition = db.Competitions.Find(id);
-            
-            if (competition == null)
-            {
-                return HttpNotFound();
-            }
-            return View(competition);
-        }
+        //public ActionResult AllYears(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Competition competition = db.Competitions.Find(id);
 
-        // GET: Competition/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Competition competition = db.Competitions.Find(id);
-            if (competition == null)
-            {
-                return HttpNotFound();
-            }
-            return View(competition);
-        }
+        //    if (competition == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(competition);
+        //}
 
-        // trying to use to spit by Year -see route config added season so year would show as param not query param
+        // trying to use to spit by Year -see route config added season so year would show as param not query param. Issue as we are calling compresult from Comp. Left out for now
         //public ActionResult DetailsforComp(int? id, int season)
         //{
         //    if (id == null)
@@ -114,6 +90,21 @@ namespace Golf_Results_MVC.Controllers
         //    }
         //    return View(comp_Result);
         //}
+
+        // GET: Competition/Details/5
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Competition competition = db.Competitions.Find(id);
+            if (competition == null)
+            {
+                return HttpNotFound();
+            }
+            return View(competition);
+        }
 
         [Authorize(Roles = "admin")]
         public ActionResult Create()
@@ -176,7 +167,7 @@ namespace Golf_Results_MVC.Controllers
             }
             var compToUpdate = db.Competitions.Find(id);
             if (TryUpdateModel(compToUpdate, "",
-               new string[] { "Name", "StartDate", "EndDate" }))
+               new string[] { "Name"}))
             {
                 try
                 {

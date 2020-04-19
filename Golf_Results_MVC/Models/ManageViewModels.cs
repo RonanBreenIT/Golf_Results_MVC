@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
+// Purpose - Security, Login, Registering, Authorising 
 namespace Golf_Results_MVC.Models
 {
     public class IndexViewModel

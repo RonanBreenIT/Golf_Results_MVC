@@ -11,7 +11,7 @@ using Microsoft.Owin.Security;
 using Golf_Results_MVC.Models;
 using Golf_Results_MVC.DAL;
 
-
+// Purpose - Security, Login, Registering, Authorising 
 namespace Golf_Results_MVC.Controllers
 {
     [Authorize]
