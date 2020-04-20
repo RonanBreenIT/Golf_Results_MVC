@@ -318,6 +318,14 @@
     <Compile Include="Migrations\202004191816061_InitialCreate.designer.cs">
       <DependentUpon>202004191816061_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004201905128_Test.cs" />
+    <Compile Include="Migrations\202004201905128_Test.designer.cs">
+      <DependentUpon>202004201905128_Test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004201913390_Enabling users.cs" />
+    <Compile Include="Migrations\202004201913390_Enabling users.designer.cs">
+      <DependentUpon>202004201913390_Enabling users.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Competition.cs" />
@@ -360,6 +368,7 @@
     <Content Include="Images\Golfers1.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\GolfResultsMVC20200419073955 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -442,6 +451,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202004191816061_InitialCreate.resx">
       <DependentUpon>202004191816061_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004201905128_Test.resx">
+      <DependentUpon>202004201905128_Test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004201913390_Enabling users.resx">
+      <DependentUpon>202004201913390_Enabling users.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
