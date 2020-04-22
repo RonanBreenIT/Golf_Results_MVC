@@ -48,7 +48,7 @@ namespace Golf_Results_MVC
             {
 
                 //first we create Admin rool
-               var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
                 role.Name = "admin";
                 roleManager.Create(role);
 
