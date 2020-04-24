@@ -58,9 +58,9 @@ namespace Golf_Results_MVC.Controllers
 
                             golfers.Add(new Golfer
                             {
-                                //ID = int.Parse(rows[0].ToString()), // dont need
-                                Firstname = rows[0].ToString(),
-                                Surname = rows[1].ToString(),
+                                ID = int.Parse(rows[0].ToString()), // dont need
+                                Firstname = rows[1].ToString(),
+                                Surname = rows[2].ToString(),
                                 //FullName = int.Parse(rows[3].ToString()) // dont need
                             });
                         }
@@ -69,10 +69,10 @@ namespace Golf_Results_MVC.Controllers
                     foreach (Golfer golfer in golfers.ToList())
                     {
                         // here we are checking if golfer in our upload list is already in the db
-                        var foundFName = db.Golfers.FirstOrDefault(i => i.Firstname == golfer.Firstname);
-                        var foundSName = db.Golfers.FirstOrDefault(i => i.Surname == golfer.Surname);
+                        var foundName = db.Golfers.FirstOrDefault(i => i.Firstname == golfer.Firstname && i.Surname == golfer.Surname);
+                        //var foundSName = db.Golfers.FirstOrDefault(i => i.Surname == golfer.Surname);
                         
-                        if ((foundFName != null) && (foundSName != null))
+                        if (foundName != null)
                         {
                             golfers.Remove(golfer); //... and if golfer is already in db we just remove from the list before uploading
                         }

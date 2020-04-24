@@ -18,7 +18,7 @@ namespace Golf_Results_MVC.DAL
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-            base.OnModelCreating(modelBuilder); // This line needed or nothing will work after adding auhtorisation for MVC see https://entityframework.net/knowledge-base/27660203/entity-framework-6-1-code-first-migration-error--entitytype--identityuserrole--has-no-key-defined
+            base.OnModelCreating(modelBuilder); // This line needed or nothing will work after adding auhtorisation for MVC see https://entityframework.net/knowledge-base/27660203/entity-framework-6-1-code-first-migration-error--entitytype--identityuserrole--has-no-key-defined        
         }
 
         public static GolfContext Create()

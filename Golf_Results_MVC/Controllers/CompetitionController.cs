@@ -20,6 +20,7 @@ namespace Golf_Results_MVC.Controllers
         // GET: Competition
         public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
+            ViewBag.TotalComps = db.Competitions.Count();
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
 
@@ -50,7 +51,7 @@ namespace Golf_Results_MVC.Controllers
                     comps = comps.OrderBy(s => s.Name);
                     break;
             }
-            int pageSize = 3; // Sets the number of records to display on the page
+            int pageSize = 10; // Sets the number of records to display on the page
             int pageNumber = (page ?? 1);
             return View(comps.ToPagedList(pageNumber, pageSize));
         }
