@@ -330,6 +330,10 @@
     <Compile Include="Migrations\202004241050548_Updated Name validations to increase max and min size.designer.cs">
       <DependentUpon>202004241050548_Updated Name validations to increase max and min size.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004241546333_Make DBstart from 1.cs" />
+    <Compile Include="Migrations\202004241546333_Make DBstart from 1.designer.cs">
+      <DependentUpon>202004241546333_Make DBstart from 1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Competition.cs" />
@@ -465,6 +469,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004241050548_Updated Name validations to increase max and min size.resx">
       <DependentUpon>202004241050548_Updated Name validations to increase max and min size.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004241546333_Make DBstart from 1.resx">
+      <DependentUpon>202004241546333_Make DBstart from 1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
