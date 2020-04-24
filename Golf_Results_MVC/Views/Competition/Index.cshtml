@@ -37,24 +37,24 @@
 
         @foreach (var item in Model)
         {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            <!-- Hidden Edit and Delete Links for all user bar admin-->
-            @if (User.IsInRole("admin"))
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    <!-- Hidden Edit and Delete Links for all user bar admin-->
+                    @if (User.IsInRole("admin"))
                     {
                         @Html.ActionLink("Edit", "Edit", new { id = item.ID }) @: &nbsp;|&nbsp;
                         @Html.ActionLink("Results", "Details", new { id = item.ID }) @: &nbsp;|&nbsp;
-                        @Html.ActionLink("Delete", "Delete", new { id = item.ID })  
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
                     }
                     else
                     {
                         @Html.ActionLink("Results", "Details", new { id = item.ID })
                     }
-        </td>
-    </tr>
+                </td>
+            </tr>
         }
 
     </table>
@@ -62,3 +62,6 @@
 
     @Html.PagedListPager(Model, page => Url.Action("Index",
         new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+
+    <label>Total Competitions:</label> @ViewBag.TotalComps
