@@ -49,7 +49,7 @@ namespace Golf_Results_MVC.Controllers
                     golfers = golfers.OrderBy(s => s.Surname);
                     break;
             }
-            int pageSize = 2; // Change this to increase numbers shown on the page
+            int pageSize = 30; // Change this to increase numbers shown on the page
             int pageNumber = (page ?? 1);
             return View(golfers.ToPagedList(pageNumber, pageSize));
         }
