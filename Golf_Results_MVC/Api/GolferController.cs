@@ -96,10 +96,11 @@ namespace Golf_Results_MVC.Api
             }
 
             // Note Can't just give Full Name as it is derived
-            var foundFName = db.Golfers.FirstOrDefault(i => i.Firstname == golfer.Firstname);
-            var foundSName = db.Golfers.FirstOrDefault(i => i.Surname == golfer.Surname);
+            //var foundFName = db.Golfers.FirstOrDefault(i => i.Firstname == golfer.Firstname);
+            //var foundSName = db.Golfers.FirstOrDefault(i => i.Surname == golfer.Surname);
+            var foundName = db.Golfers.FirstOrDefault(i => i.Firstname == golfer.Firstname && i.Surname == golfer.Surname);
 
-            if ((foundFName != null) && (foundSName != null))
+            if (foundName != null) 
             {
                 return BadRequest("Golfer with that Name already exists");
             }

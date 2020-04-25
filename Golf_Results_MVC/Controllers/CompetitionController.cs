@@ -119,15 +119,24 @@ namespace Golf_Results_MVC.Controllers
         [Authorize(Roles = "admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Name, StartDate, EndDate")]Competition comp)
+        public ActionResult Create([Bind(Include = "Name")]Competition comp)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    db.Competitions.Add(comp);
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
+                    var foundName = db.Competitions.FirstOrDefault(i => i.Name == comp.Name);
+
+                    if (foundName != null)
+                    {
+                        ModelState.AddModelError(string.Empty, "Competition already exists.");
+                    }
+                    else
+                    {
+                        db.Competitions.Add(comp);
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
                 }
             }
             catch (RetryLimitExceededException /* dex */)

@@ -88,9 +88,17 @@ namespace Golf_Results_MVC.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    db.Golfers.Add(golfer);
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
+                    var foundName = db.Golfers.FirstOrDefault(i => i.Firstname == golfer.Firstname && i.Surname == golfer.Surname);
+                    if (foundName != null)
+                    {
+                        ModelState.AddModelError(string.Empty, "Golfer already exists.");
+                    }
+                    else
+                    {
+                        db.Golfers.Add(golfer);
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
                 }
             }
             catch (DataException /* dex */)
