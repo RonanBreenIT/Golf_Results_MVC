@@ -340,6 +340,7 @@
     <Compile Include="Models\Comp_Result.cs" />
     <Compile Include="Models\Golfer.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\iGolfContext.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\OAuthAppProvider.cs" />

@@ -23,6 +23,16 @@ namespace Golf_Results_MVC.Api
             db.Configuration.ProxyCreationEnabled = false; // make sure to use as had Seralisation error before - see https://stackoverflow.com/questions/23098191/failed-to-serialize-the-response-in-web-api-with-json
         }
 
+        //private IGolfContext db = new GolfContext();
+
+        //// add these constructors
+        //public CompResultController() { }
+
+        //public CompResultController(IGolfContext context)
+        //{
+        //    db = context;
+        //}
+
         [HttpGet]
         [Route("all")]
         [Authorize(Roles = "user, admin")]
@@ -96,6 +106,8 @@ namespace Golf_Results_MVC.Api
                 return BadRequest("Comp Result with that ID doesn't Exist");
             }
 
+            // commented line for unit tests and added the mark as modified, reverse before deploying
+            //db.MarkAsModified(comp_Result);
             db.Entry(comp_Result).State = EntityState.Modified;
 
             try

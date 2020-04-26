@@ -17,12 +17,25 @@ namespace Golf_Results_MVC.Api
     [RoutePrefix("api/Golfer")]
     public class GolferController : ApiController
     {
+         //*** Removing just whilst need unit tests - comment back in After***
         private GolfContext db = new GolfContext();
 
         public GolferController()
         {
             db.Configuration.ProxyCreationEnabled = false; // make sure to use as had Seralisation error before - see https://stackoverflow.com/questions/23098191/failed-to-serialize-the-response-in-web-api-with-json
         }
+
+        //// adding for unit tests
+        //// modify the type of the db field
+        //private IGolfContext db = new GolfContext();
+
+        //// add these constructors
+        //public GolferController() { }
+
+        //public GolferController(IGolfContext context)
+        //{
+        //    db = context;
+        //}
 
         [HttpGet]
         [Route("all")]
@@ -63,8 +76,9 @@ namespace Golf_Results_MVC.Api
                 return BadRequest("Golfer with ID doesn't exist");
             }
 
+            // commented line for unit tests and added the mark as modified, reverse before deploying
             db.Entry(golfer).State = EntityState.Modified;
-
+            //db.MarkAsModified(golfer);
             try
             {
                 db.SaveChanges();

@@ -6,7 +6,7 @@ namespace Golf_Results_MVC.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return View("Index");
         }
 
         // Not using as yet
@@ -14,7 +14,7 @@ namespace Golf_Results_MVC.Controllers
         {
             ViewBag.Message = "Your application description page.";
 
-            return View();
+            return View("About");
         }
 
 
@@ -23,7 +23,7 @@ namespace Golf_Results_MVC.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
-            return View();
+            return View("Contact");
         }
     }
 }

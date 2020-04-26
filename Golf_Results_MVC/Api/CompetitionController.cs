@@ -23,6 +23,16 @@ namespace Golf_Results_MVC.Api
             db.Configuration.ProxyCreationEnabled = false; // make sure to use as had Seralisation error before - see https://stackoverflow.com/questions/23098191/failed-to-serialize-the-response-in-web-api-with-json
         }
 
+        //private IGolfContext db = new GolfContext();
+
+        //// add these constructors
+        //public CompetitionController() { }
+
+        //public CompetitionController(IGolfContext context)
+        //{
+        //    db = context;
+        //}
+
         [HttpGet]
         [Route("all")]
         [Authorize(Roles = "user, admin")] // Authorise user and admin to read 
@@ -62,6 +72,8 @@ namespace Golf_Results_MVC.Api
                 return BadRequest("No Competition exists with that ID");
             }
 
+            // commented line for unit tests and added the mark as modified, reverse before deploying
+            //db.MarkAsModified(competition);
             db.Entry(competition).State = EntityState.Modified;
 
             try
