@@ -1,12 +1,13 @@
 ﻿using Golf_Results_MVC.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace Golf_Results_MVC.DAL
 {
     // This our Db Set up. Inheriting App user so we can use roles (admin, user etc..) in controllers, views etc. 
-    public class GolfContext : IdentityDbContext<ApplicationUser>
+    public class GolfContext : IdentityDbContext<ApplicationUser>//, IGolfContext
     {
         public DbSet<Golfer> Golfers { get; set; }
         public DbSet<Competition> Competitions { get; set; }
@@ -14,6 +15,7 @@ namespace Golf_Results_MVC.DAL
 
         public GolfContext() : base("GolfContext", throwIfV1Schema: false) // This passes name of the connection string to the constructor
         {
+            //Configuration.ProxyCreationEnabled = false; //* have in API controllers, may move to here
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -26,5 +28,10 @@ namespace Golf_Results_MVC.DAL
             return new GolfContext();
         }
 
+        ////This for IDeploymentsContext for Unit Test
+        //public void MarkAsModified(Object item)
+        //{
+        //    Entry(item).State = EntityState.Modified;
+        //}
     }
 }
