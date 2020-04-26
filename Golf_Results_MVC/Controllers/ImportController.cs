@@ -228,7 +228,7 @@ namespace Golf_Results_MVC.Controllers
                     }
 
                     foreach (Comp_Result comp in results.ToList())
-                    {    
+                    {
                         // here we check for record with CompID, Season, GolferID conditions all matching.
                         var foundMatch = db.Comp_Results.Where(x => x.CompetitionID == comp.CompetitionID && x.Season == comp.Season && x.GolferID == comp.GolferID).FirstOrDefault();
 
