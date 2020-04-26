@@ -22,7 +22,7 @@ namespace Golf_Results_MVC
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/Content/bootstrap-superhero.css", // Change Css hero with reference to new Bootstrapp file
                       "~/Content/site.css",
                       "~/Content/common.css"));
         }
