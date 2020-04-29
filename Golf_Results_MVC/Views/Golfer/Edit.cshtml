@@ -1,10 +1,10 @@
 ﻿@model Golf_Results_MVC.Models.Golfer
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Golfer";
 }
 
-<h2>Edit</h2>
+<h2>Edit Golfer</h2>
 
 
 @using (Html.BeginForm())
@@ -12,7 +12,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Golfer</h4>
+        @*<h4>Golfer</h4>*@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.ID)
