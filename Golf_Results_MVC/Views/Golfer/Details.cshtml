@@ -4,13 +4,13 @@
     ViewBag.Title = "Results";
 }
 
-<h2>Details</h2>
+<h2>Golfer Results</h2>
 
 <div>
-    <h4>Golfer</h4>
+    @*<h4>Golfer</h4>*@
     <hr />
     <dl class="dl-horizontal">
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.Firstname)
         </dt>
 
@@ -24,6 +24,13 @@
 
         <dd>
             @Html.DisplayFor(model => model.Surname)
+        </dd>*@
+        <dt>
+            @Html.DisplayNameFor(model => model.FullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FullName)
         </dd>
         <dd>
             <table class="table">

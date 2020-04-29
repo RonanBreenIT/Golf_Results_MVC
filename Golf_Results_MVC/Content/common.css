@@ -8,21 +8,22 @@ body {
 }
 
 .jumbotron {
-    background: url("../Images/Golf16.jpg") no-repeat center center fixed;
+    background: url("../Images/Pexels8.jpg") no-repeat center center fixed;
+    /*background-color: forestgreen;*/
     background-size: cover;
     background-position: center;
     color: white;
 }
 
 .Golfers .jumbotron {
-    background: url("../Images/Golfers1.jpg") no-repeat center center fixed;
+    background: url("../Images/pexels-golf2.jpeg") no-repeat center center fixed;
     background-size: cover;
     background-position: center;
     color: white;
 }
 
 .Comps .jumbotron {
-    background: url("../Images/Golf10.jpg") no-repeat center center fixed;
+    background: url("../Images/pexels-golf2.jpeg") no-repeat center center fixed;
     background-size: cover;
     background-position: center;
     color: white;

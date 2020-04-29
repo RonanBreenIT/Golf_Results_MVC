@@ -383,6 +383,12 @@
     <Content Include="Images\Golf8.jpg" />
     <Content Include="Images\Golf9.PNG" />
     <Content Include="Images\Golfers1.jpg" />
+    <Content Include="Images\pexels-golf-1.jpeg" />
+    <Content Include="Images\pexels-golf-3.jpeg" />
+    <Content Include="Images\pexels-golf-4.jpeg" />
+    <Content Include="Images\pexels-golf2.jpeg" />
+    <Content Include="Images\Pexels7.jpg" />
+    <Content Include="Images\Pexels8.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Properties\PublishProfiles\GolfResultsMVC20200419073955 - Web Deploy.pubxml" />
