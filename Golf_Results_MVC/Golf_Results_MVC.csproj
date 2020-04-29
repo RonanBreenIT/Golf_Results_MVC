@@ -365,6 +365,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\Golf-reworked.jpg" />
+    <Content Include="Images\Golf-reworked2.jpg" />
     <Content Include="Images\Golf1.jpg" />
     <Content Include="Images\Golf10.jpg" />
     <Content Include="Images\Golf11.jpg" />
@@ -383,9 +385,16 @@
     <Content Include="Images\Golf8.jpg" />
     <Content Include="Images\Golf9.PNG" />
     <Content Include="Images\Golfers1.jpg" />
+    <Content Include="Images\Golfers2.jpg" />
+    <Content Include="Images\Golfers3.jpg" />
+    <Content Include="Images\Golfers4.jpg" />
+    <Content Include="Images\Golfers5.jpg" />
     <Content Include="Images\pexels-golf-1.jpeg" />
     <Content Include="Images\pexels-golf-3.jpeg" />
     <Content Include="Images\pexels-golf-4.jpeg" />
+    <Content Include="Images\pexels-golf2.1.jpg" />
+    <Content Include="Images\pexels-golf2.2.jpg" />
+    <Content Include="Images\pexels-golf2.3.jpg" />
     <Content Include="Images\pexels-golf2.jpeg" />
     <Content Include="Images\Pexels7.jpg" />
     <Content Include="Images\Pexels8.jpg" />

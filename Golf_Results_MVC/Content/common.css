@@ -16,14 +16,16 @@ body {
 }
 
 .Golfers .jumbotron {
-    background: url("../Images/pexels-golf2.jpeg") no-repeat center center fixed;
+    background: url("../Images/Golfers5.jpg") no-repeat center center fixed;
+    /*background-color: forestgreen;*/
     background-size: cover;
     background-position: center;
     color: white;
 }
 
 .Comps .jumbotron {
-    background: url("../Images/pexels-golf2.jpeg") no-repeat center center fixed;
+    background: url("../Images/pexels-golf2.2.jpg") no-repeat center center fixed;
+    background-color: forestgreen;
     background-size: cover;
     background-position: center;
     color: white;
