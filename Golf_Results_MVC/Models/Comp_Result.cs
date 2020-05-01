@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Text;
 
 namespace Golf_Results_MVC.Models
 {
@@ -13,22 +14,29 @@ namespace Golf_Results_MVC.Models
         public int CompetitionID { get; set; }
 
         [DataType(DataType.Date)]
-        //[DisplayFormat(DataFormatString = "{0:dd-MMM-YYYY}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd-MMM}", ApplyFormatInEditMode = true)]
         [Display(Name = "Start Date")]
         public DateTime StartDate { get; set; }
 
         [DataType(DataType.Date)]
-        //[DisplayFormat(DataFormatString = "{0:dd-MMM-YYYY}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd-MMM}", ApplyFormatInEditMode = true)]
         [Display(Name = "End Date")]
         public DateTime EndDate { get; set; }
 
         [Display(Name = "Dates")]
-        [DisplayFormat(DataFormatString = "{0:dd-MMM}", ApplyFormatInEditMode = true)]
+        //[DisplayFormat(DataFormatString = "{0:dd-MMM}", ApplyFormatInEditMode = true)]
         public string FullDate
         {
             get
-            {
-                return StartDate.ToShortDateString() + " - " + EndDate.ToShortDateString();
+            { 
+                StringBuilder sb = new StringBuilder("");
+                int startdateday = StartDate.Day;
+                int endDateday = EndDate.Day;
+                string DatesMonth = StartDate.ToString("MMM");
+                int DatesYear = StartDate.Year;
+                sb.Append(startdateday + "-" + endDateday);
+                sb.Append(" " + DatesMonth + " " + DatesYear);
+                return sb.ToString(); ;
             }
         }
 
