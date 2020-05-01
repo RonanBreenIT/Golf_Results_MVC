@@ -10,21 +10,6 @@
     @*<h4>Golfer</h4>*@
     <hr />
     <dl class="dl-horizontal">
-        @*<dt>
-            @Html.DisplayNameFor(model => model.Firstname)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Firstname)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Surname)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Surname)
-        </dd>*@
         <dt>
             @Html.DisplayNameFor(model => model.FullName)
         </dt>
@@ -41,7 +26,7 @@
                     <th>Position</th>
                 </tr>
                 <!-- Displays all golf Results-->
-                @foreach (var item in Model.Comp_Result.OrderByDescending(i => i.Season))
+                @foreach (var item in Model.Comp_Result.OrderByDescending(i => i.Season).ThenByDescending(i => i.StartDate))
                 {
                     <tr>
                         <td>
