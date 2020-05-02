@@ -4,7 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
-// this is for Unit Tests
+// this is for Unit Tests // This is our mock db
 namespace Golf_Results_MVC.Models
 {
     public interface IGolfContext : IDisposable
