@@ -99,7 +99,7 @@
 
 //        //    var controller = new CompResultController(context);
 
-            
+
 //        //    var result = controller.GetCompResultPerSeason(1,2020) as OkNegotiatedContentResult<Comp_Result>;
 
 
@@ -150,7 +150,7 @@
 
 //        Comp_Result GetDemoCompResult()
 //        {
-//            return new Comp_Result() { CompResultID = 3, CompetitionID = 1, Season = 2020, StartDate = new DateTime(2020,01,01), EndDate = new DateTime(2020, 01, 04), GolferID = 3, Position = "3", GolferScore = "+2" };
+//            return new Comp_Result() { CompResultID = 3, CompetitionID = 1, Season = 2020, StartDate = new DateTime(2020, 01, 01), EndDate = new DateTime(2020, 01, 04), GolferID = 3, Position = "3", GolferScore = "+2" };
 //        }
 //    }
 //}
